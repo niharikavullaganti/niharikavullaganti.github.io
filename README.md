@@ -1,4 +1,4 @@
-﻿# Niharika's website
+# Niharika's website
 
 A single-page academic portfolio. No build step: it is plain HTML, CSS and JavaScript.
 
@@ -6,7 +6,7 @@ A single-page academic portfolio. No build step: it is plain HTML, CSS and JavaS
 
 - `index.html` is the whole site.
 - `cv.pdf` is her CV. Add it to this folder (the Download CV buttons point to it). Use a public version without referees' phone numbers. The name must be lowercase: GitHub Pages treats `CV.pdf` and `cv.pdf` as different files.
-- `photos/` holds `headshot.jpg` (a square crop shown in the seed head) and the photos in About, Research and Talks. Resize new photos to about 1200px on the long side (under ~300 KB) before adding them. `photos/originals/` keeps the full-size files and is not uploaded.
+- `photos/` holds `headshot.jpg` (a 4:5 portrait crop shown in the arch frame at the top) and the photos in About, Research and Talks. Resize new photos to about 1200px on the long side (under ~300 KB) before adding them. `photos/originals/` keeps the full-size files and is not uploaded.
 - `CNAME` is created later, when the domain is ready (see "Custom domain").
 
 ## Edit the content

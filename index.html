@@ -7,7 +7,7 @@
 <meta name="description" content="Niharika Vullaganti is a PhD candidate at North Dakota State University working on precision agriculture: hyperspectral soil sensing, AI and robotics for site-specific nutrient management. Research, publications, talks and news.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Young+Serif&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
 <!--
   EDIT GUIDE
   1. Search this file for [ and replace every bracketed placeholder with real details.
@@ -26,117 +26,151 @@
     --fern: #3F6E41;
     --anth: #8B2F5E;
     --line: rgba(24, 54, 38, .18);
-    --display: "Young Serif", Georgia, serif;
-    --body: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --grid: rgba(24, 54, 38, .07);
+    --shadow: rgba(24, 54, 38, .14);
+    --display: "Inter Tight", system-ui, sans-serif;
+    --body: "Inter Tight", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
   }
+  /* the page opens in light mode (set in <head>); these apply when dark is chosen */
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
       --bg: #101C15; --paper: #17271E; --ink: #E3EBDD; --muted: #A2B7A7;
       --fern: #86B58A; --anth: #E58FBA; --line: rgba(227, 235, 221, .2);
+      --grid: rgba(227, 235, 221, .05); --shadow: rgba(0, 0, 0, .35);
     }
   }
   :root[data-theme="dark"] {
     --bg: #101C15; --paper: #17271E; --ink: #E3EBDD; --muted: #A2B7A7;
     --fern: #86B58A; --anth: #E58FBA; --line: rgba(227, 235, 221, .2);
+    --grid: rgba(227, 235, 221, .05); --shadow: rgba(0, 0, 0, .35);
   }
 
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
   body {
-    margin: 0; background: var(--bg); color: var(--ink);
-    font: 400 1.0625rem/1.65 var(--body);
+    margin: 0; color: var(--ink);
+    /* faint six-column grid behind everything */
+    background: linear-gradient(90deg, var(--grid) 1px, transparent 1px) 0 0 / calc(100% / 6) 100%, var(--bg);
+    font: 400 1.05rem/1.65 var(--body);
     -webkit-font-smoothing: antialiased;
   }
   a { color: var(--anth); text-underline-offset: .2em; text-decoration-thickness: 1px; }
   a:hover { text-decoration-thickness: 2px; }
   :focus-visible { outline: 3px solid var(--anth); outline-offset: 3px; border-radius: 2px; }
-  h1, h2, h3 { font-family: var(--display); font-weight: 400; line-height: 1.12; margin: 0; }
+  h1, h2, h3 { font-family: var(--display); font-weight: 700; letter-spacing: -.035em; line-height: 1.1; margin: 0; }
 
-  /* ---------- layout ---------- */
-  .shell { display: grid; grid-template-columns: 260px minmax(0, 1fr); min-height: 100vh; }
+  /* ---------- top bar ---------- */
   .side {
-    position: sticky; top: 0; align-self: start; height: 100vh;
-    padding: 2.25rem 1.75rem; display: flex; flex-direction: column; gap: 2rem;
+    position: sticky; top: 0; z-index: 5; display: flex; align-items: center; gap: 2rem;
+    padding: .8rem clamp(1.25rem, 5vw, 4.5rem); background: var(--bg); border-bottom: 1px solid var(--line);
   }
-  .wordmark { font: 400 1.35rem/1.15 var(--display); color: var(--ink); text-decoration: none; }
-  .nav { display: flex; flex-direction: column; gap: .35rem; }
+  .wordmark { font: 500 .72rem/1.15 var(--mono); text-transform: uppercase; letter-spacing: .08em; color: var(--ink); text-decoration: none; }
+  .nav { display: flex; gap: .25rem 1.5rem; flex: 1; min-width: 0; overflow-x: auto; scrollbar-width: none; }
   .nav a {
-    color: var(--muted); text-decoration: none; padding: .2rem 0 .2rem .85rem;
-    border-left: 2px solid transparent; font-weight: 500;
+    color: var(--muted); text-decoration: none; white-space: nowrap; padding: .3rem 0;
+    font: 400 .74rem/1 var(--mono); text-transform: uppercase; letter-spacing: .06em;
+    border-bottom: 1px solid transparent;
   }
-  .nav a:hover, .nav a.on { color: var(--ink); border-left-color: var(--anth); }
-  .side-foot { margin-top: auto; display: flex; flex-direction: column; gap: .5rem; font-size: .95rem; }
+  .nav a:hover, .nav a.on { color: var(--ink); border-bottom-color: var(--anth); }
   .theme-btn {
-    align-self: flex-start; background: none; border: 1px solid var(--line); color: var(--muted);
-    border-radius: 999px; padding: .3rem .8rem; font: inherit; font-size: .85rem; cursor: pointer;
+    background: none; border: 1px solid var(--line); color: var(--muted); border-radius: 2px; cursor: pointer;
+    padding: .45rem .7rem; font: 400 .7rem/1 var(--mono); text-transform: uppercase; letter-spacing: .06em; white-space: nowrap;
   }
   .theme-btn:hover { color: var(--ink); border-color: var(--ink); }
 
   main { padding: 0 clamp(1.25rem, 5vw, 4.5rem) 6rem; }
-  section { padding-top: 5.5rem; max-width: 46rem; }
-  section > h2 { font-size: clamp(1.8rem, 3.4vw, 2.5rem); margin-bottom: 1.75rem; }
+  section { padding-top: 5.5rem; max-width: 52rem; scroll-margin-top: 4rem; }
+  section > h2 { font-size: clamp(2.2rem, 5vw, 3.8rem); letter-spacing: -.045em; margin-bottom: 1.75rem; }
   p { margin: 0 0 1.1em; }
-  .lede { font-size: 1.25rem; line-height: 1.55; }
+  .lede { font-size: 1.3rem; line-height: 1.55; letter-spacing: -.01em; }
 
-  /* ---------- hero ---------- */
+  /* ---------- hero: name across the page, intro left, arch portrait right ---------- */
   .hero {
-    padding-top: clamp(3rem, 9vh, 6rem); max-width: none; min-height: 78vh;
-    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 2rem 3rem;
+    max-width: none; padding-top: 1.5rem;
+    display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: clamp(2rem, 6vw, 6rem); align-items: end;
   }
-  .hero-text { flex: 1 1 18rem; max-width: 36rem; }
-  .hero h1 { font-size: clamp(2.8rem, 7vw, 5.4rem); letter-spacing: -.01em; margin-bottom: 1.5rem; }
-  .hero .role { font-size: 1.2rem; color: var(--muted); margin-bottom: 2rem; }
+  .hero h1 {
+    grid-column: 1 / -1; font-size: clamp(3rem, 12vw, 15rem); line-height: .92; letter-spacing: -.055em;
+    font-weight: 600; white-space: nowrap; margin-bottom: 2.5rem;
+  }
+  .hero-text { padding-bottom: .5rem; }
+  .hero .role { font-size: clamp(1.15rem, 1.9vw, 1.55rem); line-height: 1.4; letter-spacing: -.015em; max-width: 30rem; margin-bottom: 1.75rem; }
+  .portrait { position: relative; margin: 0; width: clamp(220px, 26vw, 380px); }
+  .portrait img {
+    display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover;
+    border-radius: 999px 999px 18px 18px; box-shadow: 0 24px 50px -20px var(--shadow);
+  }
+  .chip {
+    position: absolute; left: -1.25rem; bottom: 1.75rem; display: flex; align-items: center; gap: .55rem;
+    padding: .6rem .9rem; border-radius: 999px; background: var(--paper); border: 1px solid var(--line);
+    box-shadow: 0 8px 24px -8px var(--shadow); color: var(--ink);
+    font: 400 .72rem/1 var(--mono); text-transform: uppercase; letter-spacing: .06em; white-space: nowrap;
+  }
+  .chip::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--fern); }
+
   .btns { display: flex; flex-wrap: wrap; gap: .75rem; }
   .btn {
-    display: inline-block; padding: .65rem 1.25rem; border-radius: 999px; text-decoration: none;
-    font-weight: 600; border: 2px solid var(--ink); color: var(--ink);
+    display: inline-block; padding: .85rem 1.1rem; border-radius: 2px; text-decoration: none;
+    font: 500 .74rem/1 var(--mono); text-transform: uppercase; letter-spacing: .08em;
+    border: 1px solid var(--ink); color: var(--ink);
   }
   .btn.solid { background: var(--ink); color: var(--bg); }
   .btn:hover { background: var(--anth); border-color: var(--anth); color: #fff; }
 
-  .seedhead { position: relative; flex: 0 0 auto; width: clamp(220px, 28vw, 460px); aspect-ratio: 1; }
-  /* the headshot sits in the empty centre of the seed head */
-  .portrait {
-    position: absolute; left: 26%; top: 26%; width: 48%; height: 48%; border-radius: 50%;
-    object-fit: cover; box-shadow: 0 0 0 4px var(--bg), 0 0 0 6px var(--anth);
-  }
-  .seedhead svg { width: 100%; height: 100%; overflow: visible; }
-  .seedhead circle { transform-box: fill-box; transform-origin: center; animation: sprout .7s cubic-bezier(.2, .8, .3, 1) both; }
-  @keyframes sprout { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-  @media (prefers-reduced-motion: reduce) { .seedhead circle { animation: none; } }
-
   /* ---------- research ---------- */
-  .themes { display: grid; gap: 1.25rem; }
-  .theme { background: var(--paper); border-radius: 18px 4px 18px 4px; padding: 1.4rem 1.6rem; }
-  .theme h3 { font-size: 1.35rem; margin-bottom: .4rem; color: var(--fern); }
+  .themes { display: grid; gap: 1.75rem; }
+  .theme { border-top: 1px solid var(--ink); padding-top: 1rem; }
+  .theme h3 { font-size: 1.3rem; margin-bottom: .4rem; color: var(--fern); }
   .theme p { margin: 0; }
+
   /* photo grids: portrait by default, .wide for landscape shots */
   .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(12.5rem, 1fr)); gap: 1.25rem; margin-top: 2rem; }
   .gallery.wide { grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr)); margin: 0 0 2.5rem; }
   .gallery figure, figure.photo { margin: 0; }
-  .gallery img, figure.photo img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 18px 4px 18px 4px; }
+  .gallery img, figure.photo img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 6px; }
   .gallery.wide img, figure.photo img { aspect-ratio: 4 / 3; }
-  .gallery figcaption, figure.photo figcaption { color: var(--muted); font-size: .92rem; margin-top: .45rem; }
   figure.photo { margin-top: 2rem; max-width: 30rem; }
 
   /* ---------- lists ---------- */
-  .year { font: 400 1.5rem/1 var(--display); color: var(--fern); margin: 2.2rem 0 .9rem; }
+  .year { font: 500 .8rem/1 var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--fern); margin: 2.2rem 0 .9rem; }
   .year:first-child { margin-top: 0; }
   .pubs { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.1rem; }
-  .pubs li { padding-left: 1rem; border-left: 3px solid var(--fern); }
-  .pub-title { font-weight: 600; display: block; }
+  .pubs li { padding-left: 1rem; border-left: 2px solid var(--fern); }
+  .pub-title { font-weight: 600; display: block; letter-spacing: -.01em; color: var(--ink); }
+  a.pub-title { text-decoration: none; }
+  a.pub-title:hover { color: var(--anth); text-decoration: underline; }
+  .pub-links a { font: 400 .74rem/1.6 var(--mono); text-transform: uppercase; letter-spacing: .06em; }
+
+  /* CV viewer: opens over the page */
+  .cv-modal {
+    width: min(1000px, 94vw); height: 92vh; max-height: none; padding: 0; border: 0; border-radius: 12px;
+    background: var(--paper); color: var(--ink); box-shadow: 0 30px 80px -20px rgba(0, 0, 0, .5); overflow: hidden;
+  }
+  .cv-modal[open] { display: flex; flex-direction: column; }
+  .cv-modal::backdrop { background: rgba(10, 22, 15, .6); backdrop-filter: blur(4px); }
+  .cv-bar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; padding: .75rem 1rem; border-bottom: 1px solid var(--line); }
+  .cv-bar h2 { font: 500 .8rem/1 var(--mono); text-transform: uppercase; letter-spacing: .08em; }
+  .cv-bar .btns { gap: .5rem; }
+  .cv-bar .btn { padding: .6rem .8rem; }
+  .cv-modal iframe { flex: 1; width: 100%; border: 0; background: #fff; }
+  body:has(.cv-modal[open]) { overflow: hidden; }
+  button.btn { background: none; cursor: pointer; }
+  button.btn.solid { background: var(--ink); }
   .pub-meta { color: var(--muted); font-size: .98rem; }
   .pub-links { font-size: .95rem; margin-top: .15rem; display: flex; gap: 1rem; flex-wrap: wrap; }
   .me { font-weight: 600; color: var(--ink); }
 
-  .timeline { list-style: none; margin: 0; padding: 0 0 0 1.4rem; border-left: 2px solid var(--fern); display: grid; gap: 1.6rem; }
+  .timeline { list-style: none; margin: 0; padding: 0 0 0 1.4rem; border-left: 1px solid var(--line); display: grid; gap: 1.6rem; }
   .timeline li { position: relative; }
   .timeline li::before {
-    content: ""; position: absolute; left: calc(-1.4rem - 7px); top: .55em; width: 12px; height: 12px;
-    border-radius: 50%; background: var(--anth); border: 2px solid var(--bg);
+    content: ""; position: absolute; left: calc(-1.4rem - 5px); top: .55em; width: 9px; height: 9px; background: var(--anth);
   }
-  .when { color: var(--muted); font-size: .92rem; display: block; }
+  .when, .gallery figcaption, figure.photo figcaption {
+    display: block; font: 400 .76rem/1.5 var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted);
+  }
+  .gallery figcaption, figure.photo figcaption { margin-top: .5rem; }
   .what { font-weight: 600; }
   details.more { margin-top: .5rem; }
   details.more summary { cursor: pointer; color: var(--anth); font-weight: 500; }
@@ -151,24 +185,23 @@
 
   /* ---------- contact ---------- */
   .contact-links { list-style: none; padding: 0; margin: 1.25rem 0 0; display: flex; flex-wrap: wrap; gap: .6rem 1.5rem; }
-  footer { margin-top: 5rem; color: var(--muted); font-size: .92rem; }
+  footer { margin-top: 5rem; color: var(--muted); font: 400 .76rem/1.5 var(--mono); text-transform: uppercase; letter-spacing: .06em; }
 
   /* ---------- small screens ---------- */
   @media (max-width: 899px) {
-    .shell { grid-template-columns: minmax(0, 1fr); }
-    .side {
-      position: sticky; z-index: 5; height: auto; flex-direction: row; align-items: center;
-      gap: 1rem; padding: .7rem 1.25rem; background: var(--bg); border-bottom: 1px solid var(--line);
-    }
-    .nav { flex-direction: row; overflow-x: auto; gap: .25rem 1rem; scrollbar-width: none; flex: 1; min-width: 0; }
-    .nav a { border-left: 0; border-bottom: 2px solid transparent; padding: .25rem 0; white-space: nowrap; }
-    .nav a:hover, .nav a.on { border-bottom-color: var(--anth); }
-    .side-foot { display: none; }
-    .seedhead { order: -1; width: min(70vw, 300px); }
-    .hero { min-height: 0; padding-top: 2rem; }
-    section { padding-top: 4rem; scroll-margin-top: 3.5rem; }
+    .side { gap: 1rem; padding: .7rem 1.25rem; }
+    .hero { grid-template-columns: minmax(0, 1fr); }
+    .hero h1 { font-size: 16.5vw; white-space: normal; margin-bottom: 1.75rem; }
+    .portrait { grid-row: 2; width: min(80vw, 330px); margin-bottom: 2rem; }
+    .chip { left: .75rem; }
+    section { padding-top: 4rem; }
   }
 </style>
+<script>
+  /* open in light mode unless the visitor picked dark before; runs early so the page never flashes dark */
+  try { document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"; }
+  catch (e) { document.documentElement.dataset.theme = "light"; }
+</script>
 </head>
 <body>
 <div class="shell">
@@ -185,27 +218,25 @@
       <a href="#cv">CV</a>
       <a href="#contact">Contact</a>
     </nav>
-    <div class="side-foot">
-      <a href="mailto:niharika.vullaganti@ndsu.edu" id="side-email">niharika.vullaganti@ndsu.edu</a>
-      <button class="theme-btn" id="theme" type="button" aria-label="Switch between light and dark">Light / dark</button>
-    </div>
+    <button class="theme-btn" id="theme" type="button" aria-label="Switch between light and dark">Light / dark</button>
   </aside>
 
   <main id="top">
 
     <section class="hero" aria-label="Introduction">
+      <h1>Niharika Vullaganti</h1>
       <div class="hero-text">
-        <h1>Niharika Vullaganti</h1>
         <p class="role">PhD candidate in Natural Resource Management at North Dakota State University, teaching cameras, AI and robots to read soil nutrients right in the field.</p>
         <div class="btns">
           <a class="btn solid" href="#research">See my research</a>
-          <a class="btn" href="cv.pdf">Download CV</a>
+          <button class="btn" type="button" data-cv>View CV</button>
+          <a class="btn" href="cv.pdf" download>Download CV</a>
         </div>
       </div>
-      <div class="seedhead">
-        <svg viewBox="-100 -100 200 200" id="seeds" aria-hidden="true"></svg>
-        <img class="portrait" src="photos/headshot.jpg" alt="Portrait of Niharika Vullaganti" width="520" height="520">
-      </div>
+      <figure class="portrait">
+        <img src="photos/headshot.jpg" alt="Portrait of Niharika Vullaganti" width="520" height="650">
+        <figcaption class="chip">PhD candidate &middot; NDSU</figcaption>
+      </figure>
     </section>
 
     <section id="about">
@@ -324,7 +355,10 @@
     <section id="cv">
       <h2>CV</h2>
       <p>My full academic CV, with education, funding, teaching and service, is available as a PDF.</p>
-      <div class="btns"><a class="btn solid" href="cv.pdf">Download CV (PDF)</a></div>
+      <div class="btns">
+        <button class="btn solid" type="button" data-cv>View CV</button>
+        <a class="btn" href="cv.pdf" download>Download CV (PDF)</a>
+      </div>
     </section>
 
     <section id="contact">
@@ -334,6 +368,18 @@
     </section>
 
     <footer>&copy; <span id="yr"></span> Niharika Vullaganti</footer>
+
+    <dialog class="cv-modal" id="cv-modal" aria-labelledby="cv-modal-title">
+      <div class="cv-bar">
+        <h2 id="cv-modal-title">Curriculum vitae</h2>
+        <div class="btns">
+          <a class="btn" href="cv.pdf" target="_blank" rel="noopener">Open in new tab</a>
+          <a class="btn solid" href="cv.pdf" download>Download</a>
+          <button class="btn" type="button" id="cv-close" autofocus>Close &times;</button>
+        </div>
+      </div>
+      <iframe title="Niharika Vullaganti's CV" data-src="cv.pdf"></iframe>
+    </dialog>
   </main>
 </div>
 
@@ -360,9 +406,9 @@ const DATA = {
     {
       year: 2026,
       title: "AI-augmented hyperspectral soil sensing: predictive modeling of nitrogen and phosphorus using neural architecture search",
-      authors: '<span class="me">Vullaganti, N.</span>, Ram, B., Zhang, X., Aderholdt, W., Overby, P., &amp; Sun, X.',
+      authors: '<span class="me">Vullaganti, N.</span>, Ram, B., Zhang, X., Pires, C. B., Aderholdt, W., Overby, P., &amp; Sun, X.',
       venue: "Precision Agriculture, 27(1), 21",
-      doi: "",
+      doi: "https://doi.org/10.1007/s11119-026-10323-y",
       pdf: ""
     },
     {
@@ -370,7 +416,7 @@ const DATA = {
       title: "Satellite-based spatiotemporal variability and mapping the irrigation water requirements of wheat crop in Ludhiana district, Punjab",
       authors: '<span class="me">Vullaganti, N.</span>, Vashisht, B. B., Kaur, H., &amp; Arora, M.',
       venue: "Indian Journal of Soil Conservation, 54(2), 119–129",
-      doi: "",
+      doi: "https://doi.org/10.53550/ijsc.v54.i2.224",
       pdf: ""
     },
     {
@@ -386,7 +432,7 @@ const DATA = {
       title: "Systematic comparison of band selection strategies and sensor configurations for soil moisture classification using UGV-mounted hyperspectral imagery",
       authors: 'Zhang, X., <span class="me">Vullaganti, N.</span>, Aderholdt, W., Overby, P., &amp; Sun, X.',
       venue: "Smart Agricultural Technology, 102170",
-      doi: "",
+      doi: "https://doi.org/10.1016/j.atech.2026.102170",
       pdf: ""
     },
     {
@@ -394,7 +440,7 @@ const DATA = {
       title: "Precision agriculture technologies for soil site-specific nutrient management: A comprehensive review",
       authors: '<span class="me">Vullaganti, N.</span>, Ram, B. G., &amp; Sun, X.',
       venue: "Artificial Intelligence in Agriculture, 15(2), 147–161",
-      doi: "",
+      doi: "https://doi.org/10.1016/j.aiia.2025.02.001",
       pdf: ""
     },
     {
@@ -402,7 +448,7 @@ const DATA = {
       title: "Soil moisture classification using hyperspectral imaging and deep learning models on ground robot vehicles",
       authors: 'Zhang, X., Ram, B., <span class="me">Vullaganti, N.</span>, Aderholdt, W., Overby, P., &amp; Sun, X.',
       venue: "Smart Agricultural Technology, 101413",
-      doi: "",
+      doi: "https://doi.org/10.1016/j.atech.2025.101413",
       pdf: ""
     },
     {
@@ -410,7 +456,7 @@ const DATA = {
       title: "UAV-enabled approaches for irrigation scheduling and water body characterization",
       authors: 'Yadav, M., Vashisht, B. B., <span class="me">Vullaganti, N.</span>, Kumar, P., Jalota, S. K., Kumar, A., &amp; Kaushik, P.',
       venue: "Agricultural Water Management, 304, 109091",
-      doi: "",
+      doi: "https://doi.org/10.1016/j.agwat.2024.109091",
       pdf: ""
     },
     {
@@ -418,7 +464,7 @@ const DATA = {
       title: "IoT-enabled unmanned aerial vehicle: An emerging trend in precision farming",
       authors: 'Yadav, M., Vashisht, B. B., <span class="me">Vullaganti, N.</span>, Jalota, S. K., Yadav, S. L., Singh, G., Kumar, A., &amp; Kothiyal, S.',
       venue: "Book chapter in Artificial Intelligence and Smart Agriculture: Technology and Applications, 271–292",
-      doi: "",
+      doi: "https://doi.org/10.1007/978-981-97-0341-8_14",
       pdf: ""
     },
     {
@@ -568,10 +614,12 @@ function renderPubs() {
   el.innerHTML = groupByYear(DATA.publications).map(([year, items]) =>
     `<h3 class="year">${year}</h3><ul class="pubs">` + items.map((p) => `
       <li>
-        <span class="pub-title">${esc(p.title)}</span>
-        <span class="pub-meta">${p.authors}. ${esc(p.venue)}.</span>
+        ${p.doi
+          ? `<a class="pub-title" href="${esc(p.doi)}" target="_blank" rel="noopener">${esc(p.title)}</a>`
+          : `<span class="pub-title">${esc(p.title)}</span>`}
+        <span class="pub-meta">${p.authors.replace(/\.$/, "")}. ${esc(p.venue)}.</span>
         <div class="pub-links">
-          ${p.doi ? `<a href="${esc(p.doi)}">DOI</a>` : ""}
+          ${p.doi ? `<a href="${esc(p.doi)}" target="_blank" rel="noopener">Read the paper &#8599;</a>` : ""}
           ${p.pdf ? `<a href="${esc(p.pdf)}">PDF</a>` : ""}
         </div>
       </li>`).join("") + `</ul>`).join("");
@@ -616,27 +664,6 @@ function renderContact() {
   $("contact-list").innerHTML =
     `<li><a href="mailto:${esc(DATA.email)}">${esc(DATA.email)}</a></li>` +
     DATA.links.filter((l) => l.url).map((l) => `<li><a href="${esc(l.url)}" rel="noopener">${esc(l.label)}</a></li>`).join("");
-  const side = $("side-email"); side.href = "mailto:" + DATA.email; side.textContent = DATA.email;
-}
-
-/* A sunflower-style seed head: every seed sits 137.5 degrees from the last,
-   the same angle plants use to pack leaves and seeds. */
-function renderSeedhead() {
-  const svg = $("seeds"), N = 520, golden = Math.PI * (3 - Math.sqrt(5));
-  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  let out = "";
-  /* start past the centre so the seeds leave a round hole for the headshot */
-  for (let i = 161; i <= N; i++) {
-    const r = 4.1 * Math.sqrt(i), a = i * golden;
-    const x = (r * Math.cos(a)).toFixed(2), y = (r * Math.sin(a)).toFixed(2);
-    const size = (0.9 + (i / N) * 2.6).toFixed(2);
-    const t = i / N;
-    const fill = t < 0.82 ? "var(--fern)" : "var(--anth)";
-    const op = (0.35 + t * 0.65).toFixed(2);
-    const delay = reduce ? 0 : ((i - 161) * 4);
-    out += `<circle cx="${x}" cy="${y}" r="${size}" fill="${fill}" opacity="${op}" style="animation-delay:${delay}ms"/>`;
-  }
-  svg.innerHTML = out;
 }
 
 /* highlight the current section in the menu */
@@ -651,21 +678,30 @@ function watchSections() {
   map.forEach((_, id) => { const s = document.getElementById(id); if (s) io.observe(s); });
 }
 
-/* light / dark switch, remembered when the browser allows it */
+/* light / dark switch (the page starts light, see <head>), remembered when the browser allows it */
 function setupTheme() {
   const root = document.documentElement;
-  try { const saved = localStorage.getItem("theme"); if (saved) root.dataset.theme = saved; } catch (e) {}
   $("theme").addEventListener("click", () => {
-    const dark = matchMedia("(prefers-color-scheme: dark)").matches;
-    const current = root.dataset.theme || (dark ? "dark" : "light");
-    const next = current === "dark" ? "light" : "dark";
+    const next = root.dataset.theme === "dark" ? "light" : "dark";
     root.dataset.theme = next;
     try { localStorage.setItem("theme", next); } catch (e) {}
   });
 }
 
-renderPubs(); renderTalks(); renderNews(); renderPosts(); renderContact(); renderSeedhead();
-watchSections(); setupTheme();
+renderPubs(); renderTalks(); renderNews(); renderPosts(); renderContact();
+/* "View CV" opens the PDF over the page; phones get their own PDF viewer in a new tab instead */
+function setupCv() {
+  const dlg = $("cv-modal"), frame = dlg.querySelector("iframe");
+  document.querySelectorAll("[data-cv]").forEach((b) => b.addEventListener("click", () => {
+    if (matchMedia("(max-width: 640px)").matches) { window.open(frame.dataset.src, "_blank", "noopener"); return; }
+    if (!frame.src) frame.src = frame.dataset.src;   /* load the PDF only when first asked for */
+    dlg.showModal();
+  }));
+  $("cv-close").addEventListener("click", () => dlg.close());
+  dlg.addEventListener("click", (e) => { if (e.target === dlg) dlg.close(); });   /* click outside to close */
+}
+
+watchSections(); setupTheme(); setupCv();
 $("yr").textContent = new Date().getFullYear();
 </script>
 </body>

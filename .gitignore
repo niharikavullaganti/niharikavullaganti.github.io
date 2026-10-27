@@ -1,4 +1,6 @@
 # private: full CV lists referees' contact details; publish a cleaned cv.pdf instead
-CV.pdf
+CV-full-private.pdf
 # full-size originals; the site uses the resized copies in photos/
 photos/originals/
+# style previews, not part of the site
+preview-*.html
