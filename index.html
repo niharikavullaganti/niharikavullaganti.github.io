@@ -111,10 +111,14 @@
   .theme { background: var(--paper); border-radius: 18px 4px 18px 4px; padding: 1.4rem 1.6rem; }
   .theme h3 { font-size: 1.35rem; margin-bottom: .4rem; color: var(--fern); }
   .theme p { margin: 0; }
-  .field { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 1.25rem; margin-top: 2rem; }
-  .field figure { margin: 0; }
-  .field img { display: block; width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 18px 4px 18px 4px; }
-  .field figcaption { color: var(--muted); font-size: .92rem; margin-top: .45rem; }
+  /* photo grids: portrait by default, .wide for landscape shots */
+  .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(12.5rem, 1fr)); gap: 1.25rem; margin-top: 2rem; }
+  .gallery.wide { grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr)); margin: 0 0 2.5rem; }
+  .gallery figure, figure.photo { margin: 0; }
+  .gallery img, figure.photo img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 18px 4px 18px 4px; }
+  .gallery.wide img, figure.photo img { aspect-ratio: 4 / 3; }
+  .gallery figcaption, figure.photo figcaption { color: var(--muted); font-size: .92rem; margin-top: .45rem; }
+  figure.photo { margin-top: 2rem; max-width: 30rem; }
 
   /* ---------- lists ---------- */
   .year { font: 400 1.5rem/1 var(--display); color: var(--fern); margin: 2.2rem 0 .9rem; }
@@ -209,6 +213,10 @@
       <p class="lede">I am a precision agriculture researcher at North Dakota State University, working in the Department of Agricultural and Biosystems Engineering with Dr. Xin (Rex) Sun. My work asks how farmers can know what their soil needs, field by field and spot by spot, fast enough to act on it.</p>
       <p>I combine hyperspectral sensing, deep learning and ground robots to measure soil nitrogen, phosphorus and moisture in real time, so fertilizer goes only where it is needed. My path here ran through soil science at Punjab Agricultural University, satellite mapping of irrigation demand at the Punjab Remote Sensing Centre, and testing more than a thousand soil samples for farmers' soil health cards in Andhra Pradesh.</p>
       <p>Looking ahead, I want to expand site-specific input management and variable rate technology, and serve the many people who keep the food system running, from farmers to agronomists to policymakers.</p>
+      <figure class="photo">
+        <img src="photos/harvest-selfie.jpg" alt="Niharika taking a selfie with a colleague and a farmer in front of a red combine harvester" width="1200" height="900" loading="lazy">
+        <figcaption>Harvest day with a farmer collaborator. Good research starts in growers' fields.</figcaption>
+      </figure>
 
       <h3 class="year">Education</h3>
       <ul class="pubs">
@@ -251,7 +259,23 @@
           <p>I have taught middle school students to deploy AI on robots for weed detection, guest lectured in NDSU's Introduction to Precision Agriculture, and trained farmers and interns in India. As an NDSU Possibility Fellow I am building HydroVerdant, an AI-powered hydroponic kitchen garden.</p>
         </div>
       </div>
-      <div class="field">
+      <div class="gallery">
+        <figure>
+          <img src="photos/robot-drive.jpg" alt="Niharika at the controls of a large NDSU field robot vehicle between rows of crops" width="900" height="1200" loading="lazy">
+          <figcaption>Driving the NDSU field robot through research plots.</figcaption>
+        </figure>
+        <figure>
+          <img src="photos/robot-probe.jpg" alt="Niharika adjusting a soil probe mounted on the side of the robot vehicle in a bare field" width="900" height="1200" loading="lazy">
+          <figcaption>Setting up the robot's soil sampling probe.</figcaption>
+        </figure>
+        <figure>
+          <img src="photos/lab-hyperspectral.jpg" alt="A hyperspectral camera on an aluminium frame above soil samples in a dish, with a laptop showing spectra" width="900" height="1200" loading="lazy">
+          <figcaption>Hyperspectral imaging of soil samples in the lab.</figcaption>
+        </figure>
+        <figure>
+          <img src="photos/field-sensors.jpg" alt="Niharika and a colleague wiring a sensor station between rows of young soybeans" width="900" height="1200" loading="lazy">
+          <figcaption>Installing an in-field sensor station in soybeans.</figcaption>
+        </figure>
         <figure>
           <img src="photos/field-corn.jpg" alt="Niharika kneeling between rows of young corn, recording data on a handheld device" width="960" height="1280" loading="lazy">
           <figcaption>Collecting field data in corn.</figcaption>
@@ -270,6 +294,20 @@
 
     <section id="talks">
       <h2>Talks and posters</h2>
+      <div class="gallery wide">
+        <figure>
+          <img src="photos/asabe26-talk.jpg" alt="Niharika at a podium presenting a slide on soil nitrogen and phosphorus prediction to a seated audience" width="1200" height="901" loading="lazy">
+          <figcaption>Presenting soil N and P prediction with hyperspectral imaging at ASABE 2026, Indianapolis.</figcaption>
+        </figure>
+        <figure>
+          <img src="photos/asabe26-group.jpg" alt="Niharika with a group of colleagues behind large #ASABE26 letters" width="1200" height="884" loading="lazy">
+          <figcaption>With the NDSU group at ASABE 2026.</figcaption>
+        </figure>
+        <figure>
+          <img src="photos/award-stage.jpg" alt="Niharika and teammates on stage at an awards banquet, shown on a large screen above the audience" width="1200" height="900" loading="lazy">
+          <figcaption>On stage at an awards banquet.</figcaption>
+        </figure>
+      </div>
       <div id="talk-list"></div>
     </section>
 
@@ -312,7 +350,7 @@ const DATA = {
   /* a link with an empty url is hidden until you paste the profile address in */
   links: [
     { label: "Google Scholar", url: "" },
-    { label: "LinkedIn",       url: "" },
+    { label: "LinkedIn",       url: "https://www.linkedin.com/in/niharikavullaganti/" },
     { label: "ResearchGate",   url: "" },
     { label: "ORCID",          url: "" },
     { label: "X",              url: "" }
