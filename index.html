@@ -1,0 +1,634 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Niharika Vullaganti | Precision Agriculture PhD</title>
+<meta name="description" content="Niharika Vullaganti is a PhD candidate at North Dakota State University working on precision agriculture: hyperspectral soil sensing, AI and robotics for site-specific nutrient management. Research, publications, talks and news.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Young+Serif&display=swap" rel="stylesheet">
+<!--
+  EDIT GUIDE
+  1. Search this file for [ and replace every bracketed placeholder with real details.
+  2. Publications, talks, news and writing live in the DATA block near the bottom (look for "const DATA").
+     Add a new item by copying an existing line and changing the text. Newest first.
+  3. Put her CV in the same folder as this file, named cv.pdf.
+  4. To show a LinkedIn post, open it on LinkedIn, choose "Embed this post", and paste the
+     iframe's src address into the news item's  embed:  field.
+-->
+<style>
+  :root {
+    --bg: #E8EEE2;
+    --paper: #F6F8F2;
+    --ink: #183626;
+    --muted: #4B6353;
+    --fern: #3F6E41;
+    --anth: #8B2F5E;
+    --line: rgba(24, 54, 38, .18);
+    --display: "Young Serif", Georgia, serif;
+    --body: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #101C15; --paper: #17271E; --ink: #E3EBDD; --muted: #A2B7A7;
+      --fern: #86B58A; --anth: #E58FBA; --line: rgba(227, 235, 221, .2);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #101C15; --paper: #17271E; --ink: #E3EBDD; --muted: #A2B7A7;
+    --fern: #86B58A; --anth: #E58FBA; --line: rgba(227, 235, 221, .2);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 400 1.0625rem/1.65 var(--body);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--anth); text-underline-offset: .2em; text-decoration-thickness: 1px; }
+  a:hover { text-decoration-thickness: 2px; }
+  :focus-visible { outline: 3px solid var(--anth); outline-offset: 3px; border-radius: 2px; }
+  h1, h2, h3 { font-family: var(--display); font-weight: 400; line-height: 1.12; margin: 0; }
+
+  /* ---------- layout ---------- */
+  .shell { display: grid; grid-template-columns: 260px minmax(0, 1fr); min-height: 100vh; }
+  .side {
+    position: sticky; top: 0; align-self: start; height: 100vh;
+    padding: 2.25rem 1.75rem; display: flex; flex-direction: column; gap: 2rem;
+  }
+  .wordmark { font: 400 1.35rem/1.15 var(--display); color: var(--ink); text-decoration: none; }
+  .nav { display: flex; flex-direction: column; gap: .35rem; }
+  .nav a {
+    color: var(--muted); text-decoration: none; padding: .2rem 0 .2rem .85rem;
+    border-left: 2px solid transparent; font-weight: 500;
+  }
+  .nav a:hover, .nav a.on { color: var(--ink); border-left-color: var(--anth); }
+  .side-foot { margin-top: auto; display: flex; flex-direction: column; gap: .5rem; font-size: .95rem; }
+  .theme-btn {
+    align-self: flex-start; background: none; border: 1px solid var(--line); color: var(--muted);
+    border-radius: 999px; padding: .3rem .8rem; font: inherit; font-size: .85rem; cursor: pointer;
+  }
+  .theme-btn:hover { color: var(--ink); border-color: var(--ink); }
+
+  main { padding: 0 clamp(1.25rem, 5vw, 4.5rem) 6rem; }
+  section { padding-top: 5.5rem; max-width: 46rem; }
+  section > h2 { font-size: clamp(1.8rem, 3.4vw, 2.5rem); margin-bottom: 1.75rem; }
+  p { margin: 0 0 1.1em; }
+  .lede { font-size: 1.25rem; line-height: 1.55; }
+
+  /* ---------- hero ---------- */
+  .hero {
+    padding-top: clamp(3rem, 9vh, 6rem); max-width: none; min-height: 78vh;
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 2rem 3rem;
+  }
+  .hero-text { flex: 1 1 18rem; max-width: 36rem; }
+  .hero h1 { font-size: clamp(2.8rem, 7vw, 5.4rem); letter-spacing: -.01em; margin-bottom: 1.5rem; }
+  .hero .role { font-size: 1.2rem; color: var(--muted); margin-bottom: 2rem; }
+  .btns { display: flex; flex-wrap: wrap; gap: .75rem; }
+  .btn {
+    display: inline-block; padding: .65rem 1.25rem; border-radius: 999px; text-decoration: none;
+    font-weight: 600; border: 2px solid var(--ink); color: var(--ink);
+  }
+  .btn.solid { background: var(--ink); color: var(--bg); }
+  .btn:hover { background: var(--anth); border-color: var(--anth); color: #fff; }
+
+  .seedhead { position: relative; flex: 0 0 auto; width: clamp(220px, 28vw, 460px); aspect-ratio: 1; }
+  /* the headshot sits in the empty centre of the seed head */
+  .portrait {
+    position: absolute; left: 26%; top: 26%; width: 48%; height: 48%; border-radius: 50%;
+    object-fit: cover; box-shadow: 0 0 0 4px var(--bg), 0 0 0 6px var(--anth);
+  }
+  .seedhead svg { width: 100%; height: 100%; overflow: visible; }
+  .seedhead circle { transform-box: fill-box; transform-origin: center; animation: sprout .7s cubic-bezier(.2, .8, .3, 1) both; }
+  @keyframes sprout { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+  @media (prefers-reduced-motion: reduce) { .seedhead circle { animation: none; } }
+
+  /* ---------- research ---------- */
+  .themes { display: grid; gap: 1.25rem; }
+  .theme { background: var(--paper); border-radius: 18px 4px 18px 4px; padding: 1.4rem 1.6rem; }
+  .theme h3 { font-size: 1.35rem; margin-bottom: .4rem; color: var(--fern); }
+  .theme p { margin: 0; }
+  .field { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 1.25rem; margin-top: 2rem; }
+  .field figure { margin: 0; }
+  .field img { display: block; width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 18px 4px 18px 4px; }
+  .field figcaption { color: var(--muted); font-size: .92rem; margin-top: .45rem; }
+
+  /* ---------- lists ---------- */
+  .year { font: 400 1.5rem/1 var(--display); color: var(--fern); margin: 2.2rem 0 .9rem; }
+  .year:first-child { margin-top: 0; }
+  .pubs { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.1rem; }
+  .pubs li { padding-left: 1rem; border-left: 3px solid var(--fern); }
+  .pub-title { font-weight: 600; display: block; }
+  .pub-meta { color: var(--muted); font-size: .98rem; }
+  .pub-links { font-size: .95rem; margin-top: .15rem; display: flex; gap: 1rem; flex-wrap: wrap; }
+  .me { font-weight: 600; color: var(--ink); }
+
+  .timeline { list-style: none; margin: 0; padding: 0 0 0 1.4rem; border-left: 2px solid var(--fern); display: grid; gap: 1.6rem; }
+  .timeline li { position: relative; }
+  .timeline li::before {
+    content: ""; position: absolute; left: calc(-1.4rem - 7px); top: .55em; width: 12px; height: 12px;
+    border-radius: 50%; background: var(--anth); border: 2px solid var(--bg);
+  }
+  .when { color: var(--muted); font-size: .92rem; display: block; }
+  .what { font-weight: 600; }
+  details.more { margin-top: .5rem; }
+  details.more summary { cursor: pointer; color: var(--anth); font-weight: 500; }
+  details.more iframe { width: 100%; max-width: 504px; height: 520px; border: 1px solid var(--line); border-radius: 8px; margin-top: .75rem; background: var(--paper); }
+
+  .posts { display: grid; gap: 1.5rem; }
+  .post h3 { font-size: 1.4rem; margin-bottom: .2rem; }
+  .post .when { margin-bottom: .5rem; }
+  .post-body { margin-top: .75rem; }
+
+  .empty { color: var(--muted); font-style: italic; }
+
+  /* ---------- contact ---------- */
+  .contact-links { list-style: none; padding: 0; margin: 1.25rem 0 0; display: flex; flex-wrap: wrap; gap: .6rem 1.5rem; }
+  footer { margin-top: 5rem; color: var(--muted); font-size: .92rem; }
+
+  /* ---------- small screens ---------- */
+  @media (max-width: 899px) {
+    .shell { grid-template-columns: minmax(0, 1fr); }
+    .side {
+      position: sticky; z-index: 5; height: auto; flex-direction: row; align-items: center;
+      gap: 1rem; padding: .7rem 1.25rem; background: var(--bg); border-bottom: 1px solid var(--line);
+    }
+    .nav { flex-direction: row; overflow-x: auto; gap: .25rem 1rem; scrollbar-width: none; flex: 1; min-width: 0; }
+    .nav a { border-left: 0; border-bottom: 2px solid transparent; padding: .25rem 0; white-space: nowrap; }
+    .nav a:hover, .nav a.on { border-bottom-color: var(--anth); }
+    .side-foot { display: none; }
+    .seedhead { order: -1; width: min(70vw, 300px); }
+    .hero { min-height: 0; padding-top: 2rem; }
+    section { padding-top: 4rem; scroll-margin-top: 3.5rem; }
+  }
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <aside class="side">
+    <a class="wordmark" href="#top">Niharika<br>Vullaganti</a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#about">About</a>
+      <a href="#research">Research</a>
+      <a href="#publications">Publications</a>
+      <a href="#talks">Talks and posters</a>
+      <a href="#news">News and wins</a>
+      <a href="#writing">Writing</a>
+      <a href="#cv">CV</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="side-foot">
+      <a href="mailto:niharika.vullaganti@ndsu.edu" id="side-email">niharika.vullaganti@ndsu.edu</a>
+      <button class="theme-btn" id="theme" type="button" aria-label="Switch between light and dark">Light / dark</button>
+    </div>
+  </aside>
+
+  <main id="top">
+
+    <section class="hero" aria-label="Introduction">
+      <div class="hero-text">
+        <h1>Niharika Vullaganti</h1>
+        <p class="role">PhD candidate in Natural Resource Management at North Dakota State University, teaching cameras, AI and robots to read soil nutrients right in the field.</p>
+        <div class="btns">
+          <a class="btn solid" href="#research">See my research</a>
+          <a class="btn" href="cv.pdf">Download CV</a>
+        </div>
+      </div>
+      <div class="seedhead">
+        <svg viewBox="-100 -100 200 200" id="seeds" aria-hidden="true"></svg>
+        <img class="portrait" src="photos/headshot.jpg" alt="Portrait of Niharika Vullaganti" width="520" height="520">
+      </div>
+    </section>
+
+    <section id="about">
+      <h2>About</h2>
+      <p class="lede">I am a precision agriculture researcher at North Dakota State University, working in the Department of Agricultural and Biosystems Engineering with Dr. Xin (Rex) Sun. My work asks how farmers can know what their soil needs, field by field and spot by spot, fast enough to act on it.</p>
+      <p>I combine hyperspectral sensing, deep learning and ground robots to measure soil nitrogen, phosphorus and moisture in real time, so fertilizer goes only where it is needed. My path here ran through soil science at Punjab Agricultural University, satellite mapping of irrigation demand at the Punjab Remote Sensing Centre, and testing more than a thousand soil samples for farmers' soil health cards in Andhra Pradesh.</p>
+      <p>Looking ahead, I want to expand site-specific input management and variable rate technology, and serve the many people who keep the food system running, from farmers to agronomists to policymakers.</p>
+
+      <h3 class="year">Education</h3>
+      <ul class="pubs">
+        <li>
+          <span class="pub-title">Ph.D. Natural Resource Management</span>
+          <span class="pub-meta">North Dakota State University, 2024 to 2027 (expected). Advisor: Dr. Xin (Rex) Sun.</span>
+        </li>
+        <li>
+          <span class="pub-title">Graduate Certificate, Big Data Applied Statistical Analysis</span>
+          <span class="pub-meta">North Dakota State University, 2024 to 2025.</span>
+        </li>
+        <li>
+          <span class="pub-title">M.Sc. Soil Science</span>
+          <span class="pub-meta">Punjab Agricultural University, India, 2020 to 2022. Advisor: Dr. Bharat Bhushan Vashisht.</span>
+        </li>
+        <li>
+          <span class="pub-title">B.Sc. (Hons) Agriculture</span>
+          <span class="pub-meta">Acharya N.G. Ranga Agricultural University, India, 2016 to 2020.</span>
+        </li>
+      </ul>
+    </section>
+
+    <section id="research">
+      <h2>Research</h2>
+      <div class="themes">
+        <div class="theme">
+          <h3>Hyperspectral soil sensing with AI</h3>
+          <p>Soil reflects light differently depending on what it holds. I train deep learning models, including multitask networks and neural architecture search, on hyperspectral images across the VNIR and SWIR ranges to predict soil nitrogen and phosphorus together, replacing slow lab tests with a scan.</p>
+        </div>
+        <div class="theme">
+          <h3>Robots for real-time soil assessment</h3>
+          <p>With engineers, agronomists and soil scientists, I am putting these models onto ground robots (UGVs) so they can assess nutrients and moisture as they drive the field. The goal is an autonomous soil health monitor that feeds variable rate fertilizer decisions.</p>
+        </div>
+        <div class="theme">
+          <h3>Water and irrigation from above</h3>
+          <p>Using satellite imagery, Google Earth Engine and GIS, I have mapped evapotranspiration, cropping patterns and wheat irrigation needs across Ludhiana district in Punjab. I also built a low-cost IoT prototype that schedules irrigation in real time.</p>
+        </div>
+        <div class="theme">
+          <h3>Teaching, outreach and entrepreneurship</h3>
+          <p>I have taught middle school students to deploy AI on robots for weed detection, guest lectured in NDSU's Introduction to Precision Agriculture, and trained farmers and interns in India. As an NDSU Possibility Fellow I am building HydroVerdant, an AI-powered hydroponic kitchen garden.</p>
+        </div>
+      </div>
+      <div class="field">
+        <figure>
+          <img src="photos/field-corn.jpg" alt="Niharika kneeling between rows of young corn, recording data on a handheld device" width="960" height="1280" loading="lazy">
+          <figcaption>Collecting field data in corn.</figcaption>
+        </figure>
+        <figure>
+          <img src="photos/field-pxrf.jpg" alt="Niharika bending over a corn plant with a handheld X-ray fluorescence analyzer" width="960" height="1280" loading="lazy">
+          <figcaption>Scanning corn with a portable X-ray fluorescence (pXRF) analyzer for a sulfur stress study.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="publications">
+      <h2>Publications</h2>
+      <div id="pub-list"></div>
+    </section>
+
+    <section id="talks">
+      <h2>Talks and posters</h2>
+      <div id="talk-list"></div>
+    </section>
+
+    <section id="news">
+      <h2>News and wins</h2>
+      <ol class="timeline" id="news-list"></ol>
+    </section>
+
+    <section id="writing">
+      <h2>Writing</h2>
+      <div class="posts" id="post-list"></div>
+    </section>
+
+    <section id="cv">
+      <h2>CV</h2>
+      <p>My full academic CV, with education, funding, teaching and service, is available as a PDF.</p>
+      <div class="btns"><a class="btn solid" href="cv.pdf">Download CV (PDF)</a></div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>The best way to reach me is email. I am glad to hear from fellow researchers, students and anyone curious about plants.</p>
+      <ul class="contact-links" id="contact-list"></ul>
+    </section>
+
+    <footer>&copy; <span id="yr"></span> Niharika Vullaganti</footer>
+  </main>
+</div>
+
+<noscript><p style="padding:1rem">This page lists publications, talks and news with JavaScript. Please turn it on to see them.</p></noscript>
+
+<script>
+/* =====================  DATA  — edit here  =====================
+   Newest items first. Keep the commas and quotation marks.
+   Wrap your own name in <span class="me">...</span> inside authors.
+*/
+const DATA = {
+  email: "niharika.vullaganti@ndsu.edu",
+
+  /* a link with an empty url is hidden until you paste the profile address in */
+  links: [
+    { label: "Google Scholar", url: "" },
+    { label: "LinkedIn",       url: "" },
+    { label: "ResearchGate",   url: "" },
+    { label: "ORCID",          url: "" },
+    { label: "X",              url: "" }
+  ],
+
+  publications: [
+    {
+      year: 2026,
+      title: "AI-augmented hyperspectral soil sensing: predictive modeling of nitrogen and phosphorus using neural architecture search",
+      authors: '<span class="me">Vullaganti, N.</span>, Ram, B., Zhang, X., Aderholdt, W., Overby, P., &amp; Sun, X.',
+      venue: "Precision Agriculture, 27(1), 21",
+      doi: "",
+      pdf: ""
+    },
+    {
+      year: 2026,
+      title: "Satellite-based spatiotemporal variability and mapping the irrigation water requirements of wheat crop in Ludhiana district, Punjab",
+      authors: '<span class="me">Vullaganti, N.</span>, Vashisht, B. B., Kaur, H., &amp; Arora, M.',
+      venue: "Indian Journal of Soil Conservation, 54(2), 119–129",
+      doi: "",
+      pdf: ""
+    },
+    {
+      year: 2026,
+      title: "Simultaneous hyperspectral classification of soil nitrogen and phosphorus using multitask deep learning across VNIR and SWIR spectral regions",
+      authors: '<span class="me">Vullaganti, N.</span>, Zhang, X., Aderholdt, W., Overby, P., &amp; Sun, X.',
+      venue: "Smart Agricultural Technology (under revision)",
+      doi: "",
+      pdf: ""
+    },
+    {
+      year: 2026,
+      title: "Systematic comparison of band selection strategies and sensor configurations for soil moisture classification using UGV-mounted hyperspectral imagery",
+      authors: 'Zhang, X., <span class="me">Vullaganti, N.</span>, Aderholdt, W., Overby, P., &amp; Sun, X.',
+      venue: "Smart Agricultural Technology, 102170",
+      doi: "",
+      pdf: ""
+    },
+    {
+      year: 2025,
+      title: "Precision agriculture technologies for soil site-specific nutrient management: A comprehensive review",
+      authors: '<span class="me">Vullaganti, N.</span>, Ram, B. G., &amp; Sun, X.',
+      venue: "Artificial Intelligence in Agriculture, 15(2), 147–161",
+      doi: "",
+      pdf: ""
+    },
+    {
+      year: 2025,
+      title: "Soil moisture classification using hyperspectral imaging and deep learning models on ground robot vehicles",
+      authors: 'Zhang, X., Ram, B., <span class="me">Vullaganti, N.</span>, Aderholdt, W., Overby, P., &amp; Sun, X.',
+      venue: "Smart Agricultural Technology, 101413",
+      doi: "",
+      pdf: ""
+    },
+    {
+      year: 2024,
+      title: "UAV-enabled approaches for irrigation scheduling and water body characterization",
+      authors: 'Yadav, M., Vashisht, B. B., <span class="me">Vullaganti, N.</span>, Kumar, P., Jalota, S. K., Kumar, A., &amp; Kaushik, P.',
+      venue: "Agricultural Water Management, 304, 109091",
+      doi: "",
+      pdf: ""
+    },
+    {
+      year: 2024,
+      title: "IoT-enabled unmanned aerial vehicle: An emerging trend in precision farming",
+      authors: 'Yadav, M., Vashisht, B. B., <span class="me">Vullaganti, N.</span>, Jalota, S. K., Yadav, S. L., Singh, G., Kumar, A., &amp; Kothiyal, S.',
+      venue: "Book chapter in Artificial Intelligence and Smart Agriculture: Technology and Applications, 271–292",
+      doi: "",
+      pdf: ""
+    },
+    {
+      year: 2023,
+      title: "Emerging technologies for water management in agriculture",
+      authors: '<span class="me">Vullaganti, N.</span>, Kumar, T., &amp; Verma, P. K.',
+      venue: "Book chapter in Novel Approaches in Agronomy, Volume 2, 62",
+      doi: "",
+      pdf: ""
+    },
+    {
+      year: 2023,
+      title: "Digitization and data analytics in agriculture",
+      authors: 'Kumar, T., Poomiyan, S., <span class="me">Vullaganti, N.</span>, &amp; Preeti',
+      venue: "Book chapter in Recent Approaches in Agriculture, Volume 2, 51",
+      doi: "",
+      pdf: ""
+    }
+  ],
+
+  talks: [
+    {
+      year: 2026,
+      title: "Hyperspectral imaging and deep learning for rapid assessment of soil nutrient status using ground robotic vehicles",
+      event: "CANVAS 2026 (ASA-CSSA-SSSA), Portland, OR, November 1–4",
+      kind: "Poster",
+      slides: ""
+    },
+    {
+      year: 2026,
+      title: "Simultaneous hyperspectral classification of soil nitrogen and phosphorus using multitask deep learning across VNIR and SWIR spectral regions",
+      event: "ASABE Annual International Meeting, Indianapolis, IN",
+      kind: "Talk",
+      slides: ""
+    },
+    {
+      year: 2026,
+      title: "Systematic comparison of band selection strategies and sensor configurations for soil moisture classification using UGV-mounted hyperspectral imagery (co-author; presented by X. Zhang)",
+      event: "ASABE Annual International Meeting, Indianapolis, IN",
+      kind: "Talk",
+      slides: ""
+    },
+    {
+      year: 2026,
+      title: "AI, robotics and UAVs in agriculture: hands-on workshop for 6th to 8th grade students",
+      event: "Tech Savvy STEM Event, University of Jamestown, ND",
+      kind: "Workshop",
+      slides: ""
+    },
+    {
+      year: 2025,
+      title: "Introduction to Precision Agriculture (PAG 115)",
+      event: "North Dakota State University, Fall semester",
+      kind: "Guest lecture",
+      slides: ""
+    },
+    {
+      year: 2025,
+      title: "A novel CNN-based approach for soil nutrient prediction using hyperspectral imaging",
+      event: "CSABE/ASABE Annual International Meeting, Toronto, Canada. Finalist, Student Oral Presentation Competition",
+      kind: "Talk",
+      slides: ""
+    },
+    {
+      year: 2025,
+      title: "Soil moisture prediction using VNIR spectroscopy and deep learning for ground vehicle applications (co-author; presented by X. Zhang)",
+      event: "CSABE/ASABE Annual International Meeting, Toronto, Canada",
+      kind: "Poster",
+      slides: ""
+    },
+    {
+      year: 2024,
+      title: "Applications of precision agriculture technologies in site-specific nutrient management: A review",
+      event: "ASABE North Central Regional Section Meeting, Brookings, SD",
+      kind: "Poster",
+      slides: ""
+    }
+  ],
+
+  news: [
+    {
+      date: "2026",
+      text: "Won the Graduate Student Travel Award ($750) from ASA-CSSA-SSSA and the Agronomic Science Foundation to present at CANVAS 2026 in Portland, where I am also judging the MS student poster competition in Advances in Nutrient Management.",
+      link: "",
+      embed: ""   /* paste a LinkedIn embed address here to show the post */
+    },
+    {
+      date: "July 2026",
+      text: "1st place, Digital Agriculture Hackathon at ASABE 2026, for precision cattle management with low-cost Ultra-Wide-Band ear tags and a digital twin for real-time localization.",
+      link: "",
+      embed: ""
+    },
+    {
+      date: "2026",
+      text: "1st place, NDSU AgTech Hackathon (NDSU, NSF AgTech Engine North Dakota and Bayer), for UAV-based subplot detection, weed detection, crop counting and biomass estimation.",
+      link: "",
+      embed: ""
+    },
+    {
+      date: "2026",
+      text: "Paper published in Precision Agriculture: AI-augmented hyperspectral soil sensing of nitrogen and phosphorus using neural architecture search.",
+      link: "",
+      embed: ""
+    },
+    {
+      date: "January 2026",
+      text: "Joined the reviewer pool of the Journal of Agriculture and Food Research (Elsevier), after reviewing for Data in Brief since September 2025.",
+      link: "",
+      embed: ""
+    },
+    {
+      date: "2025",
+      text: "Named an NDSU Possibility Fellow and Killilea Possibility Fellow, with $5,000 to develop HydroVerdant, an AI-powered smart hydroponic kitchen garden.",
+      link: "",
+      embed: ""
+    },
+    {
+      date: "2025",
+      text: "Elected Senator in NDSU Student Government, representing the College of Agriculture, Food Systems, and Natural Resources.",
+      link: "",
+      embed: ""
+    },
+    {
+      date: "July 2025",
+      text: "Finalist in the ASABE Student Oral Presentation Competition at the CSABE/ASABE Annual International Meeting in Toronto.",
+      link: "",
+      embed: ""
+    }
+  ],
+
+  posts: []
+};
+
+/* =====================  RENDERING  (no need to edit below)  ===================== */
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+function groupByYear(items) {
+  const map = new Map();
+  items.forEach((it) => { if (!map.has(it.year)) map.set(it.year, []); map.get(it.year).push(it); });
+  return [...map.entries()].sort((a, b) => b[0] - a[0]);
+}
+
+function renderPubs() {
+  const el = $("pub-list");
+  if (!DATA.publications.length) { el.innerHTML = '<p class="empty">Publications will appear here.</p>'; return; }
+  el.innerHTML = groupByYear(DATA.publications).map(([year, items]) =>
+    `<h3 class="year">${year}</h3><ul class="pubs">` + items.map((p) => `
+      <li>
+        <span class="pub-title">${esc(p.title)}</span>
+        <span class="pub-meta">${p.authors}. ${esc(p.venue)}.</span>
+        <div class="pub-links">
+          ${p.doi ? `<a href="${esc(p.doi)}">DOI</a>` : ""}
+          ${p.pdf ? `<a href="${esc(p.pdf)}">PDF</a>` : ""}
+        </div>
+      </li>`).join("") + `</ul>`).join("");
+}
+
+function renderTalks() {
+  const el = $("talk-list");
+  if (!DATA.talks.length) { el.innerHTML = '<p class="empty">Talks and posters will appear here.</p>'; return; }
+  el.innerHTML = groupByYear(DATA.talks).map(([year, items]) =>
+    `<h3 class="year">${year}</h3><ul class="pubs">` + items.map((t) => `
+      <li>
+        <span class="pub-title">${esc(t.title)}</span>
+        <span class="pub-meta">${esc(t.kind)}, ${esc(t.event)}.</span>
+        <div class="pub-links">${t.slides ? `<a href="${esc(t.slides)}">Slides</a>` : ""}</div>
+      </li>`).join("") + `</ul>`).join("");
+}
+
+function renderNews() {
+  $("news-list").innerHTML = DATA.news.map((n) => `
+    <li>
+      <span class="when">${esc(n.date)}</span>
+      <span class="what">${esc(n.text)}</span>
+      ${n.link ? ` <a href="${esc(n.link)}">Read more</a>` : ""}
+      ${n.embed ? `<details class="more"><summary>Show the LinkedIn post</summary>
+        <iframe src="${esc(n.embed)}" title="LinkedIn post" loading="lazy" allowfullscreen></iframe></details>` : ""}
+    </li>`).join("");
+}
+
+function renderPosts() {
+  const el = $("post-list");
+  if (!DATA.posts.length) { el.innerHTML = '<p class="empty">The first post is on its way.</p>'; return; }
+  el.innerHTML = DATA.posts.map((p) => `
+    <article class="post">
+      <h3>${esc(p.title)}</h3>
+      <span class="when">${esc(p.date)}</span>
+      <p>${esc(p.summary)}</p>
+      <details class="more"><summary>Read the post</summary><div class="post-body">${p.body}</div></details>
+    </article>`).join("");
+}
+
+function renderContact() {
+  $("contact-list").innerHTML =
+    `<li><a href="mailto:${esc(DATA.email)}">${esc(DATA.email)}</a></li>` +
+    DATA.links.filter((l) => l.url).map((l) => `<li><a href="${esc(l.url)}" rel="noopener">${esc(l.label)}</a></li>`).join("");
+  const side = $("side-email"); side.href = "mailto:" + DATA.email; side.textContent = DATA.email;
+}
+
+/* A sunflower-style seed head: every seed sits 137.5 degrees from the last,
+   the same angle plants use to pack leaves and seeds. */
+function renderSeedhead() {
+  const svg = $("seeds"), N = 520, golden = Math.PI * (3 - Math.sqrt(5));
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let out = "";
+  /* start past the centre so the seeds leave a round hole for the headshot */
+  for (let i = 161; i <= N; i++) {
+    const r = 4.1 * Math.sqrt(i), a = i * golden;
+    const x = (r * Math.cos(a)).toFixed(2), y = (r * Math.sin(a)).toFixed(2);
+    const size = (0.9 + (i / N) * 2.6).toFixed(2);
+    const t = i / N;
+    const fill = t < 0.82 ? "var(--fern)" : "var(--anth)";
+    const op = (0.35 + t * 0.65).toFixed(2);
+    const delay = reduce ? 0 : ((i - 161) * 4);
+    out += `<circle cx="${x}" cy="${y}" r="${size}" fill="${fill}" opacity="${op}" style="animation-delay:${delay}ms"/>`;
+  }
+  svg.innerHTML = out;
+}
+
+/* highlight the current section in the menu */
+function watchSections() {
+  const links = [...document.querySelectorAll(".nav a")];
+  const map = new Map(links.map((a) => [a.getAttribute("href").slice(1), a]));
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) { links.forEach((l) => l.classList.remove("on")); const a = map.get(e.target.id); if (a) a.classList.add("on"); }
+    });
+  }, { rootMargin: "-35% 0px -60% 0px" });
+  map.forEach((_, id) => { const s = document.getElementById(id); if (s) io.observe(s); });
+}
+
+/* light / dark switch, remembered when the browser allows it */
+function setupTheme() {
+  const root = document.documentElement;
+  try { const saved = localStorage.getItem("theme"); if (saved) root.dataset.theme = saved; } catch (e) {}
+  $("theme").addEventListener("click", () => {
+    const dark = matchMedia("(prefers-color-scheme: dark)").matches;
+    const current = root.dataset.theme || (dark ? "dark" : "light");
+    const next = current === "dark" ? "light" : "dark";
+    root.dataset.theme = next;
+    try { localStorage.setItem("theme", next); } catch (e) {}
+  });
+}
+
+renderPubs(); renderTalks(); renderNews(); renderPosts(); renderContact(); renderSeedhead();
+watchSections(); setupTheme();
+$("yr").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
