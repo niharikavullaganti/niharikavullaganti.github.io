@@ -7,6 +7,9 @@ A single-page academic portfolio. No build step: it is plain HTML, CSS and JavaS
 - `index.html` is the whole site.
 - `cv.pdf` is her CV. Add it to this folder (the Download CV buttons point to it). Use a public version without referees' phone numbers. The name must be lowercase: GitHub Pages treats `CV.pdf` and `cv.pdf` as different files.
 - `photos/` holds `headshot.jpg` (a 4:5 portrait crop shown in the arch frame at the top) and the photos in About, Research and Talks. Resize new photos to about 1200px on the long side (under ~300 KB) before adding them. `photos/originals/` keeps the full-size files and is not uploaded.
+- `assets/` holds the faint contour-line backgrounds (`topo-light.svg`, `topo-dark.svg`). Upload this folder too.
+- Clicking a photo opens it larger. The caption is the title; the longer text comes from the photo's `data-detail="..."` attribute in `index.html`.
+- Projects are in `projects:` in the `DATA` block. A publication without a DOI shows its `note:` text instead of a link.
 - `CNAME` is created later, when the domain is ready (see "Custom domain").
 
 ## Edit the content

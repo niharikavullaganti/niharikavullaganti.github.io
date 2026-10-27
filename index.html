@@ -7,7 +7,7 @@
 <meta name="description" content="Niharika Vullaganti is a PhD candidate at North Dakota State University working on precision agriculture: hyperspectral soil sensing, AI and robotics for site-specific nutrient management. Research, publications, talks and news.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&family=IBM+Plex+Mono:wght@400;500&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
 <!--
   EDIT GUIDE
   1. Search this file for [ and replace every bracketed placeholder with real details.
@@ -18,32 +18,35 @@
      iframe's src address into the news item's  embed:  field.
 -->
 <style>
+  /* soil and field palette: wheat ground, humus ink, crop green, clay accent */
   :root {
-    --bg: #E8EEE2;
-    --paper: #F6F8F2;
-    --ink: #183626;
-    --muted: #4B6353;
-    --fern: #3F6E41;
-    --anth: #8B2F5E;
-    --line: rgba(24, 54, 38, .18);
-    --grid: rgba(24, 54, 38, .07);
-    --shadow: rgba(24, 54, 38, .14);
-    --display: "Inter Tight", system-ui, sans-serif;
+    --bg: #F3EEE2;
+    --paper: #FBF8F0;
+    --ink: #2A2419;
+    --muted: #6B5E4B;
+    --fern: #4C7A34;
+    --anth: #A4532E;
+    --line: rgba(42, 36, 25, .18);
+    --shadow: rgba(60, 45, 25, .2);
+    --topo: url("assets/topo-light.svg");
+    /* VNIR to SWIR, violet through red into the infrared */
+    --spectrum: linear-gradient(90deg, #6B3FA0, #2F6DB5, #2E9C6A, #C9B22E, #D9792B, #A8322D, #5A2A1F);
+    --display: "Fraunces", Georgia, "Times New Roman", serif;
     --body: "Inter Tight", system-ui, -apple-system, "Segoe UI", sans-serif;
     --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
   }
   /* the page opens in light mode (set in <head>); these apply when dark is chosen */
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-      --bg: #101C15; --paper: #17271E; --ink: #E3EBDD; --muted: #A2B7A7;
-      --fern: #86B58A; --anth: #E58FBA; --line: rgba(227, 235, 221, .2);
-      --grid: rgba(227, 235, 221, .05); --shadow: rgba(0, 0, 0, .35);
+      --bg: #18140F; --paper: #221D16; --ink: #EEE6D5; --muted: #B8AA92;
+      --fern: #9DC47F; --anth: #E39468; --line: rgba(238, 230, 213, .18);
+      --shadow: rgba(0, 0, 0, .45); --topo: url("assets/topo-dark.svg");
     }
   }
   :root[data-theme="dark"] {
-    --bg: #101C15; --paper: #17271E; --ink: #E3EBDD; --muted: #A2B7A7;
-    --fern: #86B58A; --anth: #E58FBA; --line: rgba(227, 235, 221, .2);
-    --grid: rgba(227, 235, 221, .05); --shadow: rgba(0, 0, 0, .35);
+    --bg: #18140F; --paper: #221D16; --ink: #EEE6D5; --muted: #B8AA92;
+    --fern: #9DC47F; --anth: #E39468; --line: rgba(238, 230, 213, .18);
+    --shadow: rgba(0, 0, 0, .45); --topo: url("assets/topo-dark.svg");
   }
 
   * { box-sizing: border-box; }
@@ -51,64 +54,62 @@
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
   body {
     margin: 0; color: var(--ink);
-    /* faint six-column grid behind everything */
-    background: linear-gradient(90deg, var(--grid) 1px, transparent 1px) 0 0 / calc(100% / 6) 100%, var(--bg);
+    /* faint contour lines, like a field elevation or yield map */
+    background: var(--topo) center top / 1600px auto repeat, var(--bg);
     font: 400 1.05rem/1.65 var(--body);
     -webkit-font-smoothing: antialiased;
   }
   a { color: var(--anth); text-underline-offset: .2em; text-decoration-thickness: 1px; }
   a:hover { text-decoration-thickness: 2px; }
   :focus-visible { outline: 3px solid var(--anth); outline-offset: 3px; border-radius: 2px; }
-  h1, h2, h3 { font-family: var(--display); font-weight: 700; letter-spacing: -.035em; line-height: 1.1; margin: 0; }
+  h1, h2, h3 { font-family: var(--display); font-weight: 600; letter-spacing: -.01em; line-height: 1.1; margin: 0; }
 
-  /* ---------- top bar ---------- */
+  /* ---------- side menu: fixed column on the left, becomes a top bar on small screens ---------- */
+  .shell { display: grid; grid-template-columns: 15rem minmax(0, 1fr); }
   .side {
-    position: sticky; top: 0; z-index: 5; display: flex; align-items: center; gap: 2rem;
-    padding: .8rem clamp(1.25rem, 5vw, 4.5rem); background: var(--bg); border-bottom: 1px solid var(--line);
+    position: sticky; top: 0; z-index: 5; height: 100vh; display: flex; flex-direction: column; align-items: flex-start; gap: 2.5rem;
+    padding: 2.5rem 1.75rem; background: var(--bg); border-right: 1px solid var(--line);
   }
-  .wordmark { font: 500 .72rem/1.15 var(--mono); text-transform: uppercase; letter-spacing: .08em; color: var(--ink); text-decoration: none; }
-  .nav { display: flex; gap: .25rem 1.5rem; flex: 1; min-width: 0; overflow-x: auto; scrollbar-width: none; }
+  .wordmark { font: 500 .8rem/1.3 var(--mono); text-transform: uppercase; letter-spacing: .08em; color: var(--ink); text-decoration: none; }
+  .wordmark::after { content: ""; display: block; width: 7.5rem; height: 4px; margin-top: .7rem; border-radius: 2px; background: var(--spectrum); }
+  .nav { display: flex; flex-direction: column; gap: .35rem; flex: 1; min-width: 0; }
   .nav a {
-    color: var(--muted); text-decoration: none; white-space: nowrap; padding: .3rem 0;
+    color: var(--muted); text-decoration: none; white-space: nowrap; padding: .4rem 0 .4rem .75rem;
     font: 400 .74rem/1 var(--mono); text-transform: uppercase; letter-spacing: .06em;
-    border-bottom: 1px solid transparent;
+    border-left: 2px solid transparent;
   }
-  .nav a:hover, .nav a.on { color: var(--ink); border-bottom-color: var(--anth); }
+  .nav a:hover, .nav a.on { color: var(--ink); border-left-color: var(--anth); }
   .theme-btn {
     background: none; border: 1px solid var(--line); color: var(--muted); border-radius: 2px; cursor: pointer;
     padding: .45rem .7rem; font: 400 .7rem/1 var(--mono); text-transform: uppercase; letter-spacing: .06em; white-space: nowrap;
   }
   .theme-btn:hover { color: var(--ink); border-color: var(--ink); }
 
-  main { padding: 0 clamp(1.25rem, 5vw, 4.5rem) 6rem; }
-  section { padding-top: 5.5rem; max-width: 52rem; scroll-margin-top: 4rem; }
-  section > h2 { font-size: clamp(2.2rem, 5vw, 3.8rem); letter-spacing: -.045em; margin-bottom: 1.75rem; }
+  /* content sits in a centred column to the right of the menu */
+  main { padding: 0 clamp(1.25rem, 4vw, 3.5rem) 6rem; }
+  main > :not(dialog) { max-width: 72rem; margin-inline: auto; }
+  section { padding-top: 5.5rem; scroll-margin-top: 1.5rem; }
+  section > h2 { font-size: clamp(2.2rem, 4.5vw, 3.6rem); letter-spacing: -.02em; margin-bottom: 1.75rem; }
   p { margin: 0 0 1.1em; }
   .lede { font-size: 1.3rem; line-height: 1.55; letter-spacing: -.01em; }
 
-  /* ---------- hero: name across the page, intro left, arch portrait right ---------- */
+  /* ---------- hero: name and intro left, portrait right ---------- */
   .hero {
-    max-width: none; padding-top: 1.5rem;
-    display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: clamp(2rem, 6vw, 6rem); align-items: end;
+    padding-top: 4rem;
+    display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: clamp(2rem, 5vw, 4.5rem); align-items: center;
   }
+  .hero-text { container-type: inline-size; }
   .hero h1 {
-    grid-column: 1 / -1; font-size: clamp(3rem, 12vw, 15rem); line-height: .92; letter-spacing: -.055em;
-    font-weight: 600; white-space: nowrap; margin-bottom: 2.5rem;
+    font-size: clamp(2.6rem, 5vw, 6rem); font-size: min(10.5cqi, 6.5rem);
+    line-height: 1; letter-spacing: -.02em; font-weight: 600; white-space: nowrap; margin-bottom: 1.5rem;
   }
-  .hero-text { padding-bottom: .5rem; }
+  .hero h1::after { content: ""; display: block; width: 5rem; height: 4px; margin-top: 1.25rem; border-radius: 2px; background: var(--spectrum); }
   .hero .role { font-size: clamp(1.15rem, 1.9vw, 1.55rem); line-height: 1.4; letter-spacing: -.015em; max-width: 30rem; margin-bottom: 1.75rem; }
-  .portrait { position: relative; margin: 0; width: clamp(220px, 26vw, 380px); }
+  .portrait { margin: 0; width: clamp(220px, 24vw, 340px); }
   .portrait img {
     display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover;
-    border-radius: 999px 999px 18px 18px; box-shadow: 0 24px 50px -20px var(--shadow);
+    border-radius: 6px; box-shadow: 0 24px 50px -20px var(--shadow);
   }
-  .chip {
-    position: absolute; left: -1.25rem; bottom: 1.75rem; display: flex; align-items: center; gap: .55rem;
-    padding: .6rem .9rem; border-radius: 999px; background: var(--paper); border: 1px solid var(--line);
-    box-shadow: 0 8px 24px -8px var(--shadow); color: var(--ink);
-    font: 400 .72rem/1 var(--mono); text-transform: uppercase; letter-spacing: .06em; white-space: nowrap;
-  }
-  .chip::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--fern); }
 
   .btns { display: flex; flex-wrap: wrap; gap: .75rem; }
   .btn {
@@ -119,19 +120,35 @@
   .btn.solid { background: var(--ink); color: var(--bg); }
   .btn:hover { background: var(--anth); border-color: var(--anth); color: #fff; }
 
+  /* ---------- about ---------- */
+  .about-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(16rem, 24rem); gap: 1rem 3rem; align-items: start; }
+  .about-grid figure.photo { margin-top: .4rem; }
+
   /* ---------- research ---------- */
-  .themes { display: grid; gap: 1.75rem; }
+  .themes { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); gap: 1.75rem 2.5rem; }
   .theme { border-top: 1px solid var(--ink); padding-top: 1rem; }
   .theme h3 { font-size: 1.3rem; margin-bottom: .4rem; color: var(--fern); }
   .theme p { margin: 0; }
 
   /* photo grids: portrait by default, .wide for landscape shots */
-  .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(12.5rem, 1fr)); gap: 1.25rem; margin-top: 2rem; }
-  .gallery.wide { grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr)); margin: 0 0 2.5rem; }
+  .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr)); gap: 1.25rem; margin-top: 2rem; }
+  .gallery.wide { margin: 0 0 2.5rem; }
   .gallery figure, figure.photo { margin: 0; }
   .gallery img, figure.photo img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 6px; }
   .gallery.wide img, figure.photo img { aspect-ratio: 4 / 3; }
   figure.photo { margin-top: 2rem; max-width: 30rem; }
+
+  /* ---------- projects and beyond the lab ---------- */
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr)); gap: 1.25rem; }
+  .card {
+    background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 1.25rem 1.25rem 1.1rem;
+    display: flex; flex-direction: column; gap: .5rem;
+  }
+  .card h3 { font-size: 1.25rem; line-height: 1.2; }
+  .card p { margin: 0; font-size: .98rem; }
+  .card .when { color: var(--fern); }
+  .card .pub-links { margin-top: auto; padding-top: .25rem; }
+  .hobby svg { width: 2.25rem; height: 2.25rem; color: var(--anth); }
 
   /* ---------- lists ---------- */
   .year { font: 500 .8rem/1 var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--fern); margin: 2.2rem 0 .9rem; }
@@ -142,6 +159,25 @@
   a.pub-title { text-decoration: none; }
   a.pub-title:hover { color: var(--anth); text-decoration: underline; }
   .pub-links a { font: 400 .74rem/1.6 var(--mono); text-transform: uppercase; letter-spacing: .06em; }
+
+  /* photo pop-up: click any photo for a larger view and a short story */
+  .gallery figure, figure.photo { cursor: zoom-in; }
+  .gallery figure img, figure.photo img { transition: transform .25s ease, box-shadow .25s ease; }
+  .gallery figure:hover img, figure.photo:hover img { transform: translateY(-3px); box-shadow: 0 14px 30px -14px var(--shadow); }
+  .lightbox {
+    width: min(1100px, 94vw); max-height: 92vh; padding: 0; border: 0; border-radius: 12px;
+    background: var(--paper); color: var(--ink); box-shadow: 0 30px 80px -20px rgba(0, 0, 0, .5); overflow: hidden;
+  }
+  .lightbox[open] { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(15rem, 1fr); }
+  .lightbox::backdrop { background: rgba(20, 15, 8, .7); backdrop-filter: blur(4px); }
+  .lightbox img { display: block; width: 100%; height: 100%; max-height: 92vh; object-fit: contain; background: #14110C; }
+  .lb-text { padding: 1.5rem 1.5rem 1.25rem; display: flex; flex-direction: column; gap: .9rem; overflow-y: auto; }
+  .lb-text h2 { font-size: 1.45rem; line-height: 1.25; }
+  .lb-text p { margin: 0; color: var(--muted); }
+  .lb-nav { margin-top: auto; display: flex; gap: .5rem; flex-wrap: wrap; }
+  .lb-nav .btn { padding: .6rem .8rem; }
+  .lb-count { font: 400 .72rem/1 var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+  body:has(.lightbox[open]) { overflow: hidden; }
 
   /* CV viewer: opens over the page */
   .cv-modal {
@@ -160,6 +196,7 @@
   button.btn.solid { background: var(--ink); }
   .pub-meta { color: var(--muted); font-size: .98rem; }
   .pub-links { font-size: .95rem; margin-top: .15rem; display: flex; gap: 1rem; flex-wrap: wrap; }
+  .pub-note { font: 400 .74rem/1.6 var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
   .me { font-weight: 600; color: var(--ink); }
 
   .timeline { list-style: none; margin: 0; padding: 0 0 0 1.4rem; border-left: 1px solid var(--line); display: grid; gap: 1.6rem; }
@@ -189,12 +226,22 @@
 
   /* ---------- small screens ---------- */
   @media (max-width: 899px) {
-    .side { gap: 1rem; padding: .7rem 1.25rem; }
-    .hero { grid-template-columns: minmax(0, 1fr); }
-    .hero h1 { font-size: 16.5vw; white-space: normal; margin-bottom: 1.75rem; }
-    .portrait { grid-row: 2; width: min(80vw, 330px); margin-bottom: 2rem; }
-    .chip { left: .75rem; }
-    section { padding-top: 4rem; }
+    .shell { display: block; }
+    .side {
+      height: auto; flex-direction: row; align-items: center; gap: 1rem;
+      padding: .7rem 1.25rem; border-right: 0; border-bottom: 1px solid var(--line);
+    }
+    .wordmark { font-size: .72rem; line-height: 1.15; }
+    .nav { flex-direction: row; gap: .25rem 1.25rem; overflow-x: auto; scrollbar-width: none; }
+    .nav a { padding: .3rem 0; border-left: 0; border-bottom: 1px solid transparent; }
+    .nav a:hover, .nav a.on { border-bottom-color: var(--anth); }
+    .hero { grid-template-columns: minmax(0, 1fr); padding-top: 1.5rem; }
+    .hero h1 { font-size: 14vw; white-space: normal; margin-bottom: 1.25rem; }
+    .about-grid { grid-template-columns: minmax(0, 1fr); }
+    .lightbox[open] { grid-template-columns: minmax(0, 1fr); overflow-y: auto; }
+    .lightbox img { height: auto; max-height: 60vh; }
+    .portrait { grid-row: 1; width: min(80vw, 330px); margin-bottom: 2rem; }
+    section { padding-top: 4rem; scroll-margin-top: 4rem; }
   }
 </style>
 <script>
@@ -211,10 +258,12 @@
     <nav class="nav" aria-label="Sections">
       <a href="#about">About</a>
       <a href="#research">Research</a>
+      <a href="#projects">Projects</a>
       <a href="#publications">Publications</a>
       <a href="#talks">Talks and posters</a>
       <a href="#news">News and wins</a>
       <a href="#writing">Writing</a>
+      <a href="#beyond">Beyond the lab</a>
       <a href="#cv">CV</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -224,9 +273,9 @@
   <main id="top">
 
     <section class="hero" aria-label="Introduction">
-      <h1>Niharika Vullaganti</h1>
       <div class="hero-text">
-        <p class="role">PhD candidate in Natural Resource Management at North Dakota State University, teaching cameras, AI and robots to read soil nutrients right in the field.</p>
+        <h1>Niharika Vullaganti</h1>
+        <p class="role">PhD student in Natural Resource Management at North Dakota State University.</p>
         <div class="btns">
           <a class="btn solid" href="#research">See my research</a>
           <button class="btn" type="button" data-cv>View CV</button>
@@ -235,19 +284,22 @@
       </div>
       <figure class="portrait">
         <img src="photos/headshot.jpg" alt="Portrait of Niharika Vullaganti" width="520" height="650">
-        <figcaption class="chip">PhD candidate &middot; NDSU</figcaption>
       </figure>
     </section>
 
     <section id="about">
       <h2>About</h2>
+      <div class="about-grid">
+      <div>
       <p class="lede">I am a precision agriculture researcher at North Dakota State University, working in the Department of Agricultural and Biosystems Engineering with Dr. Xin (Rex) Sun. My work asks how farmers can know what their soil needs, field by field and spot by spot, fast enough to act on it.</p>
-      <p>I combine hyperspectral sensing, deep learning and ground robots to measure soil nitrogen, phosphorus and moisture in real time, so fertilizer goes only where it is needed. My path here ran through soil science at Punjab Agricultural University, satellite mapping of irrigation demand at the Punjab Remote Sensing Centre, and testing more than a thousand soil samples for farmers' soil health cards in Andhra Pradesh.</p>
-      <p>Looking ahead, I want to expand site-specific input management and variable rate technology, and serve the many people who keep the food system running, from farmers to agronomists to policymakers.</p>
-      <figure class="photo">
+      <p>I combine hyperspectral sensing, deep learning and ground robots to measure soil nitrogen, phosphorus and moisture in real time, so fertilizer goes only where it is needed. My path here ran through learning about precision agriculture technologies during an undergraduate research experience at Kansas State University, applying remote sensing and GIS to map irrigation demand during my master's at Punjab Agricultural University, India, and wanting to pursue research in precision agriculture using more advanced technologies.</p>
+      <p>Looking ahead, I want to expand my research in site-specific crop management and variable rate technology and serve multiple stakeholders who keep the food system running, from farmers to agronomists to policymakers.</p>
+      </div>
+      <figure class="photo" data-detail="Working side by side with growers keeps the research practical: the soil and crop data behind my models comes from real production fields.">
         <img src="photos/harvest-selfie.jpg" alt="Niharika taking a selfie with a colleague and a farmer in front of a red combine harvester" width="1200" height="900" loading="lazy">
         <figcaption>Harvest day with a farmer collaborator. Good research starts in growers' fields.</figcaption>
       </figure>
+      </div>
 
       <h3 class="year">Education</h3>
       <ul class="pubs">
@@ -291,31 +343,36 @@
         </div>
       </div>
       <div class="gallery">
-        <figure>
+        <figure data-detail="This ground robot (UGV) carries hyperspectral cameras through research plots, so soil nutrients and moisture can be assessed while it drives. Putting AI models on it is the core of my PhD work.">
           <img src="photos/robot-drive.jpg" alt="Niharika at the controls of a large NDSU field robot vehicle between rows of crops" width="900" height="1200" loading="lazy">
           <figcaption>Driving the NDSU field robot through research plots.</figcaption>
         </figure>
-        <figure>
+        <figure data-detail="The probe pulls soil from the field. Lab results from these samples are what the hyperspectral models are trained and checked against.">
           <img src="photos/robot-probe.jpg" alt="Niharika adjusting a soil probe mounted on the side of the robot vehicle in a bare field" width="900" height="1200" loading="lazy">
           <figcaption>Setting up the robot's soil sampling probe.</figcaption>
         </figure>
-        <figure>
+        <figure data-detail="Soil samples are imaged across VNIR and SWIR wavelengths. Deep learning models, including multitask networks and neural architecture search, then predict nitrogen and phosphorus from the spectra.">
           <img src="photos/lab-hyperspectral.jpg" alt="A hyperspectral camera on an aluminium frame above soil samples in a dish, with a laptop showing spectra" width="900" height="1200" loading="lazy">
           <figcaption>Hyperspectral imaging of soil samples in the lab.</figcaption>
         </figure>
-        <figure>
+        <figure data-detail="In-field sensors record soil and crop conditions in real time, the kind of data behind my low-cost IoT prototype for irrigation scheduling.">
           <img src="photos/field-sensors.jpg" alt="Niharika and a colleague wiring a sensor station between rows of young soybeans" width="900" height="1200" loading="lazy">
           <figcaption>Installing an in-field sensor station in soybeans.</figcaption>
         </figure>
-        <figure>
+        <figure data-detail="Ground-truth measurements taken by hand are what make sensor and AI predictions trustworthy.">
           <img src="photos/field-corn.jpg" alt="Niharika kneeling between rows of young corn, recording data on a handheld device" width="960" height="1280" loading="lazy">
           <figcaption>Collecting field data in corn.</figcaption>
         </figure>
-        <figure>
+        <figure data-detail="Supporting University of Minnesota collaborators with portable X-ray fluorescence (pXRF) field data collection for a sulfur stress study in corn.">
           <img src="photos/field-pxrf.jpg" alt="Niharika bending over a corn plant with a handheld X-ray fluorescence analyzer" width="960" height="1280" loading="lazy">
           <figcaption>Scanning corn with a portable X-ray fluorescence (pXRF) analyzer for a sulfur stress study.</figcaption>
         </figure>
       </div>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="cards" id="project-list"></div>
     </section>
 
     <section id="publications">
@@ -326,11 +383,11 @@
     <section id="talks">
       <h2>Talks and posters</h2>
       <div class="gallery wide">
-        <figure>
+        <figure data-detail="Oral presentation at the 2026 ASABE Annual International Meeting in Indianapolis on classifying soil nitrogen and phosphorus together with multitask deep learning across VNIR and SWIR.">
           <img src="photos/asabe26-talk.jpg" alt="Niharika at a podium presenting a slide on soil nitrogen and phosphorus prediction to a seated audience" width="1200" height="901" loading="lazy">
           <figcaption>Presenting soil N and P prediction with hyperspectral imaging at ASABE 2026, Indianapolis.</figcaption>
         </figure>
-        <figure>
+        <figure data-detail="With colleagues from NDSU at the 2026 ASABE Annual International Meeting in Indianapolis.">
           <img src="photos/asabe26-group.jpg" alt="Niharika with a group of colleagues behind large #ASABE26 letters" width="1200" height="884" loading="lazy">
           <figcaption>With the NDSU group at ASABE 2026.</figcaption>
         </figure>
@@ -352,6 +409,28 @@
       <div class="posts" id="post-list"></div>
     </section>
 
+    <section id="beyond">
+      <h2>Beyond the lab</h2>
+      <p class="lede">When I am not in the field or the lab, you will find me cooking, painting or dancing.</p>
+      <div class="cards">
+        <div class="card hobby">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11h18c0 4-4 7-9 7s-9-3-9-7Z"/><path d="M6 21h12"/><path d="M9 7c0-1.5 1-1.5 1-3M14 7c0-1.5 1-1.5 1-3"/></svg>
+          <h3>Cooking</h3>
+          <p>Trying new recipes and cooking the dishes I grew up with.</p>
+        </div>
+        <div class="card hobby">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.8 1.3-1.7-.3-.9.3-1.8 1.3-1.8H17a4 4 0 0 0 4-4c0-5-4-10.5-9-10.5Z"/><circle cx="7.5" cy="11" r="1"/><circle cx="10" cy="7" r="1"/><circle cx="15" cy="7.5" r="1"/></svg>
+          <h3>Painting</h3>
+          <p>Putting colour on canvas, a different way of looking closely.</p>
+        </div>
+        <div class="card hobby">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="13" cy="4" r="2"/><path d="M8 9.5 12 8l3 2.5 3.5-1"/><path d="M12 8v6l-3 7"/><path d="m12 14 3.5 2 1 5"/></svg>
+          <h3>Dancing</h3>
+          <p>Music, movement and the best way to recharge after a long week.</p>
+        </div>
+      </div>
+    </section>
+
     <section id="cv">
       <h2>CV</h2>
       <p>My full academic CV, with education, funding, teaching and service, is available as a PDF.</p>
@@ -368,6 +447,20 @@
     </section>
 
     <footer>&copy; <span id="yr"></span> Niharika Vullaganti</footer>
+
+    <dialog class="lightbox" id="lightbox" aria-labelledby="lb-title">
+      <img id="lb-img" src="" alt="">
+      <div class="lb-text">
+        <span class="lb-count" id="lb-count"></span>
+        <h2 id="lb-title"></h2>
+        <p id="lb-detail"></p>
+        <div class="lb-nav">
+          <button class="btn" type="button" id="lb-prev">&larr; Previous</button>
+          <button class="btn" type="button" id="lb-next">Next &rarr;</button>
+          <button class="btn solid" type="button" id="lb-close">Close &times;</button>
+        </div>
+      </div>
+    </dialog>
 
     <dialog class="cv-modal" id="cv-modal" aria-labelledby="cv-modal-title">
       <div class="cv-bar">
@@ -425,7 +518,8 @@ const DATA = {
       authors: '<span class="me">Vullaganti, N.</span>, Zhang, X., Aderholdt, W., Overby, P., &amp; Sun, X.',
       venue: "Smart Agricultural Technology (under revision)",
       doi: "",
-      pdf: ""
+      pdf: "",
+      note: "Link will be added once published"   /* shown when there is no doi */
     },
     {
       year: 2026,
@@ -482,6 +576,46 @@ const DATA = {
       venue: "Book chapter in Recent Approaches in Agriculture, Volume 2, 51",
       doi: "",
       pdf: ""
+    }
+  ],
+
+  /* link: optional, e.g. a paper or a news story about the project */
+  projects: [
+    {
+      title: "Autonomous soil health monitoring robot",
+      when: "2024 to present · PhD research",
+      text: "Hyperspectral imaging and deep learning on a ground robot (UGV) for real-time soil nitrogen, phosphorus and moisture assessment, built with engineers, agronomists and soil scientists. I contributed to a USDA NIFA AFRI proposal to extend it with edge AI and in-field sampling.",
+      link: "https://doi.org/10.1007/s11119-026-10323-y", linkLabel: "Related paper"
+    },
+    {
+      title: "HydroVerdant: a smart hydroponic kitchen garden",
+      when: "2025 · NDSU Possibility Fellowship",
+      text: "An AI-powered indoor farming startup, awarded $5,000 by the NDSU Center for Entrepreneurship and Family Business to develop a smart hydroponic garden for home kitchens.",
+      link: "", linkLabel: ""
+    },
+    {
+      title: "Precision cattle management with UWB ear tags",
+      when: "2026 · 1st place, ASABE Digital Agriculture Hackathon",
+      text: "A low-cost Ultra-Wide-Band ear tag system paired with a digital twin platform for real-time animal localization and immediate intervention.",
+      link: "", linkLabel: ""
+    },
+    {
+      title: "UAV crop analytics",
+      when: "2026 · 1st place, NDSU AgTech Hackathon",
+      text: "Drone imagery pipelines for subplot detection, weed detection, crop counting and biomass estimation, at a hackathon held by NDSU, NSF AgTech Engine North Dakota and Bayer.",
+      link: "", linkLabel: ""
+    },
+    {
+      title: "Low-cost IoT smart irrigation",
+      when: "NDSU",
+      text: "A low-cost IoT prototype that reads field conditions and schedules irrigation in real time.",
+      link: "", linkLabel: ""
+    },
+    {
+      title: "Satellite mapping of wheat irrigation needs",
+      when: "2021 to 2022 · M.Sc., Punjab Remote Sensing Centre",
+      text: "Google Earth Engine, Sentinel imagery and GIS to map evapotranspiration, cropping patterns and wheat irrigation water requirements across Ludhiana district, Punjab.",
+      link: "https://doi.org/10.53550/ijsc.v54.i2.224", linkLabel: "Related paper"
     }
   ],
 
@@ -621,8 +755,19 @@ function renderPubs() {
         <div class="pub-links">
           ${p.doi ? `<a href="${esc(p.doi)}" target="_blank" rel="noopener">Read the paper &#8599;</a>` : ""}
           ${p.pdf ? `<a href="${esc(p.pdf)}">PDF</a>` : ""}
+          ${!p.doi && p.note ? `<span class="pub-note">${esc(p.note)}</span>` : ""}
         </div>
       </li>`).join("") + `</ul>`).join("");
+}
+
+function renderProjects() {
+  $("project-list").innerHTML = DATA.projects.map((p) => `
+    <article class="card">
+      <span class="when">${esc(p.when)}</span>
+      <h3>${esc(p.title)}</h3>
+      <p>${esc(p.text)}</p>
+      ${p.link ? `<div class="pub-links"><a href="${esc(p.link)}" target="_blank" rel="noopener">${esc(p.linkLabel || "Learn more")} &#8599;</a></div>` : ""}
+    </article>`).join("");
 }
 
 function renderTalks() {
@@ -688,7 +833,7 @@ function setupTheme() {
   });
 }
 
-renderPubs(); renderTalks(); renderNews(); renderPosts(); renderContact();
+renderPubs(); renderProjects(); renderTalks(); renderNews(); renderPosts(); renderContact();
 /* "View CV" opens the PDF over the page; phones get their own PDF viewer in a new tab instead */
 function setupCv() {
   const dlg = $("cv-modal"), frame = dlg.querySelector("iframe");
@@ -701,7 +846,34 @@ function setupCv() {
   dlg.addEventListener("click", (e) => { if (e.target === dlg) dlg.close(); });   /* click outside to close */
 }
 
-watchSections(); setupTheme(); setupCv();
+/* click a photo to see it larger with its caption and a short story (from data-detail) */
+function setupLightbox() {
+  const dlg = $("lightbox"), figs = [...document.querySelectorAll(".gallery figure, figure.photo")];
+  let i = 0;
+  const show = (n) => {
+    i = (n + figs.length) % figs.length;
+    const f = figs[i], img = f.querySelector("img"), cap = f.querySelector("figcaption");
+    $("lb-img").src = img.src; $("lb-img").alt = img.alt;
+    $("lb-title").textContent = cap ? cap.textContent : img.alt;
+    $("lb-detail").textContent = f.dataset.detail || "";
+    $("lb-detail").hidden = !f.dataset.detail;
+    $("lb-count").textContent = `Photo ${i + 1} of ${figs.length}`;
+  };
+  figs.forEach((f, n) => {
+    f.tabIndex = 0; f.setAttribute("role", "button");
+    f.setAttribute("aria-label", "Open photo: " + f.querySelector("img").alt);
+    const open = () => { show(n); dlg.showModal(); };
+    f.addEventListener("click", open);
+    f.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); } });
+  });
+  $("lb-prev").addEventListener("click", () => show(i - 1));
+  $("lb-next").addEventListener("click", () => show(i + 1));
+  $("lb-close").addEventListener("click", () => dlg.close());
+  dlg.addEventListener("click", (e) => { if (e.target === dlg) dlg.close(); });
+  dlg.addEventListener("keydown", (e) => { if (e.key === "ArrowLeft") show(i - 1); if (e.key === "ArrowRight") show(i + 1); });
+}
+
+watchSections(); setupTheme(); setupCv(); setupLightbox();
 $("yr").textContent = new Date().getFullYear();
 </script>
 </body>
