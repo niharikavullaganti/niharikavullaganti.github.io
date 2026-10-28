@@ -4,3 +4,5 @@ CV-full-private.pdf
 photos/originals/
 # style previews, not part of the site
 preview-*.html
+# macOS folder files
+.DS_Store
