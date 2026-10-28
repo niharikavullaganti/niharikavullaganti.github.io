@@ -125,6 +125,8 @@
   .about-grid figure.photo { margin-top: .4rem; }
 
   /* ---------- research ---------- */
+  .tags { list-style: none; margin: 0 0 3rem; padding: 0; display: flex; flex-wrap: wrap; gap: .6rem; }
+  .tags li { padding: .45rem .9rem; border: 1px solid var(--line); border-radius: 999px; background: var(--paper); font-size: .95rem; }
   .themes { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); gap: 1.75rem 2.5rem; }
   .theme { border-top: 1px solid var(--ink); padding-top: 1rem; }
   .theme h3 { font-size: 1.3rem; margin-bottom: .4rem; color: var(--fern); }
@@ -148,6 +150,7 @@
   .card p { margin: 0; font-size: .98rem; }
   .card .when { color: var(--fern); }
   .card .pub-links { margin-top: auto; padding-top: .25rem; }
+  .cards.hobbies { grid-template-columns: repeat(auto-fill, minmax(min(100%, 14rem), 1fr)); }
   .hobby svg { width: 2.25rem; height: 2.25rem; color: var(--anth); }
 
   /* ---------- lists ---------- */
@@ -258,10 +261,10 @@
     <nav class="nav" aria-label="Sections">
       <a href="#about">About</a>
       <a href="#research">Research</a>
-      <a href="#projects">Projects</a>
       <a href="#publications">Publications</a>
       <a href="#talks">Talks and posters</a>
       <a href="#news">News and wins</a>
+      <a href="#projects">Projects</a>
       <a href="#writing">Writing</a>
       <a href="#beyond">Beyond the lab</a>
       <a href="#cv">CV</a>
@@ -278,8 +281,7 @@
         <p class="role">PhD student in Natural Resource Management at North Dakota State University.</p>
         <div class="btns">
           <a class="btn solid" href="#research">See my research</a>
-          <button class="btn" type="button" data-cv>View CV</button>
-          <a class="btn" href="cv.pdf" download>Download CV</a>
+          <button class="btn" type="button" data-cv>View / Download CV</button>
         </div>
       </div>
       <figure class="portrait">
@@ -291,7 +293,7 @@
       <h2>About</h2>
       <div class="about-grid">
       <div>
-      <p class="lede">I am a precision agriculture researcher at North Dakota State University, working in the Department of Agricultural and Biosystems Engineering with Dr. Xin (Rex) Sun. My work asks how farmers can know what their soil needs, field by field and spot by spot, fast enough to act on it.</p>
+      <p class="lede">I am a precision agriculture researcher at North Dakota State University, working in the Department of Agricultural and Biosystems Engineering. My work asks how farmers can know what their soil needs, field by field and spot by spot, fast enough to act on it.</p>
       <p>I combine hyperspectral sensing, deep learning and ground robots to measure soil nitrogen, phosphorus and moisture in real time, so fertilizer goes only where it is needed. My path here ran through learning about precision agriculture technologies during an undergraduate research experience at Kansas State University, applying remote sensing and GIS to map irrigation demand during my master's at Punjab Agricultural University, India, and wanting to pursue research in precision agriculture using more advanced technologies.</p>
       <p>Looking ahead, I want to expand my research in site-specific crop management and variable rate technology and serve multiple stakeholders who keep the food system running, from farmers to agronomists to policymakers.</p>
       </div>
@@ -324,23 +326,29 @@
 
     <section id="research">
       <h2>Research</h2>
+      <h3 class="year">Research interests</h3>
+      <p>Beyond my current projects, I am broadly interested in:</p>
+      <ul class="tags">
+        <li>Precision agriculture</li>
+        <li>Proximal and remote sensing</li>
+        <li>Artificial intelligence</li>
+        <li>Site-specific input management</li>
+        <li>Variable rate technology</li>
+        <li>Robotics and drones in agriculture</li>
+        <li>Data-driven agronomy</li>
+        <li>Sustainable intensification</li>
+      </ul>
+      <h3 class="year">Current research</h3>
       <div class="themes">
         <div class="theme">
           <h3>Hyperspectral soil sensing with AI</h3>
-          <p>Soil reflects light differently depending on what it holds. I train deep learning models, including multitask networks and neural architecture search, on hyperspectral images across the VNIR and SWIR ranges to predict soil nitrogen and phosphorus together, replacing slow lab tests with a scan.</p>
+          <p>Soil reflects light differently depending on what it holds. I train deep learning models, including multitask networks and neural architecture search, on hyperspectral images across the VNIR and SWIR ranges to predict soil nitrogen, phosphorus, and potassium. I am working on developing both classification and regression models and add more properties like pH and EC.</p>
         </div>
         <div class="theme">
           <h3>Robots for real-time soil assessment</h3>
-          <p>With engineers, agronomists and soil scientists, I am putting these models onto ground robots (UGVs) so they can assess nutrients and moisture as they drive the field. The goal is an autonomous soil health monitor that feeds variable rate fertilizer decisions.</p>
+          <p>With engineers, agronomists and soil scientists, I am working on developing ground robots (UGVs) so they can assess nutrients and moisture as they drive the field. The goal is an autonomous soil health monitoring system to replace slow lab tests. So far we have a semi-autonomous soil sampling system.</p>
         </div>
-        <div class="theme">
-          <h3>Water and irrigation from above</h3>
-          <p>Using satellite imagery, Google Earth Engine and GIS, I have mapped evapotranspiration, cropping patterns and wheat irrigation needs across Ludhiana district in Punjab. I also built a low-cost IoT prototype that schedules irrigation in real time.</p>
-        </div>
-        <div class="theme">
-          <h3>Teaching, outreach and entrepreneurship</h3>
-          <p>I have taught middle school students to deploy AI on robots for weed detection, guest lectured in NDSU's Introduction to Precision Agriculture, and trained farmers and interns in India. As an NDSU Possibility Fellow I am building HydroVerdant, an AI-powered hydroponic kitchen garden.</p>
-        </div>
+
       </div>
       <div class="gallery">
         <figure data-detail="This ground robot (UGV) carries hyperspectral cameras through research plots, so soil nutrients and moisture can be assessed while it drives. Putting AI models on it is the core of my PhD work.">
@@ -368,11 +376,6 @@
           <figcaption>Scanning corn with a portable X-ray fluorescence (pXRF) analyzer for a sulfur stress study.</figcaption>
         </figure>
       </div>
-    </section>
-
-    <section id="projects">
-      <h2>Projects</h2>
-      <div class="cards" id="project-list"></div>
     </section>
 
     <section id="publications">
@@ -404,6 +407,11 @@
       <ol class="timeline" id="news-list"></ol>
     </section>
 
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="cards" id="project-list"></div>
+    </section>
+
     <section id="writing">
       <h2>Writing</h2>
       <div class="posts" id="post-list"></div>
@@ -411,8 +419,8 @@
 
     <section id="beyond">
       <h2>Beyond the lab</h2>
-      <p class="lede">When I am not in the field or the lab, you will find me cooking, painting or dancing.</p>
-      <div class="cards">
+      <p class="lede">When I am not in the field or the lab, you will find me cooking, painting, dancing, or exploring new places.</p>
+      <div class="cards hobbies">
         <div class="card hobby">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11h18c0 4-4 7-9 7s-9-3-9-7Z"/><path d="M6 21h12"/><path d="M9 7c0-1.5 1-1.5 1-3M14 7c0-1.5 1-1.5 1-3"/></svg>
           <h3>Cooking</h3>
@@ -428,6 +436,11 @@
           <h3>Dancing</h3>
           <p>Music, movement and the best way to recharge after a long week.</p>
         </div>
+        <div class="card hobby">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5Z"/></svg>
+          <h3>Exploring and traveling</h3>
+          <p>Discovering new places, from seasonal attractions around town to trips further away.</p>
+        </div>
       </div>
     </section>
 
@@ -435,8 +448,7 @@
       <h2>CV</h2>
       <p>My full academic CV, with education, funding, teaching and service, is available as a PDF.</p>
       <div class="btns">
-        <button class="btn solid" type="button" data-cv>View CV</button>
-        <a class="btn" href="cv.pdf" download>Download CV (PDF)</a>
+        <button class="btn solid" type="button" data-cv>View / Download CV</button>
       </div>
     </section>
 
@@ -623,21 +635,21 @@ const DATA = {
     {
       year: 2026,
       title: "Hyperspectral imaging and deep learning for rapid assessment of soil nutrient status using ground robotic vehicles",
-      event: "CANVAS 2026 (ASA-CSSA-SSSA), Portland, OR, November 1–4",
+      event: "CANVAS 2026, Portland, OR, November",
       kind: "Poster",
       slides: ""
     },
     {
       year: 2026,
       title: "Simultaneous hyperspectral classification of soil nitrogen and phosphorus using multitask deep learning across VNIR and SWIR spectral regions",
-      event: "ASABE Annual International Meeting, Indianapolis, IN",
+      event: "ASABE Annual International Meeting, Indianapolis, IN, July",
       kind: "Talk",
       slides: ""
     },
     {
       year: 2026,
       title: "Systematic comparison of band selection strategies and sensor configurations for soil moisture classification using UGV-mounted hyperspectral imagery (co-author; presented by X. Zhang)",
-      event: "ASABE Annual International Meeting, Indianapolis, IN",
+      event: "ASABE Annual International Meeting, Indianapolis, IN, July",
       kind: "Talk",
       slides: ""
     },
@@ -658,66 +670,78 @@ const DATA = {
     {
       year: 2025,
       title: "A novel CNN-based approach for soil nutrient prediction using hyperspectral imaging",
-      event: "CSABE/ASABE Annual International Meeting, Toronto, Canada. Finalist, Student Oral Presentation Competition",
+      event: "CSABE/ASABE Annual International Meeting, Toronto, Canada, July. Finalist, Student Oral Presentation Competition",
       kind: "Talk",
       slides: ""
     },
     {
       year: 2025,
       title: "Soil moisture prediction using VNIR spectroscopy and deep learning for ground vehicle applications (co-author; presented by X. Zhang)",
-      event: "CSABE/ASABE Annual International Meeting, Toronto, Canada",
+      event: "CSABE/ASABE Annual International Meeting, Toronto, Canada, July",
       kind: "Poster",
       slides: ""
     },
     {
       year: 2024,
       title: "Applications of precision agriculture technologies in site-specific nutrient management: A review",
-      event: "ASABE North Central Regional Section Meeting, Brookings, SD",
+      event: "ASABE North Central Regional Section Meeting, Brookings, SD, April",
       kind: "Poster",
       slides: ""
     }
   ],
 
   news: [
+  {
+      date: "October 2026",
+      text: "Joined Bison AgBot (NDSU ABEN department's robotics club) as Vice President.",
+      link: "",
+      embed: ""   /* paste a LinkedIn embed address here to show the post */
+    },
     {
-      date: "2026",
-      text: "Won the Graduate Student Travel Award ($750) from ASA-CSSA-SSSA and the Agronomic Science Foundation to present at CANVAS 2026 in Portland, where I am also judging the MS student poster competition in Advances in Nutrient Management.",
+      date: "August 2026",
+      text: "Won the Graduate Student Travel Award from ASA-CSSA-SSSA and the Agronomic Science Foundation to present at CANVAS 2026 in Portland, where I am also judging an MS student poster competition.",
       link: "",
       embed: ""   /* paste a LinkedIn embed address here to show the post */
     },
     {
       date: "July 2026",
-      text: "1st place, Digital Agriculture Hackathon at ASABE 2026, for precision cattle management with low-cost Ultra-Wide-Band ear tags and a digital twin for real-time localization.",
+      text: "Won 1st place, Digital Agriculture Hackathon at ASABE 2026, for precision cattle management with low-cost Ultra-Wide-Band ear tags and a digital twin for real-time localization.",
       link: "",
       embed: ""
     },
     {
-      date: "2026",
-      text: "1st place, NDSU AgTech Hackathon (NDSU, NSF AgTech Engine North Dakota and Bayer), for UAV-based subplot detection, weed detection, crop counting and biomass estimation.",
+      date: "February 2026",
+      text: "Won 1st place, NDSU AgTech Hackathon (NDSU, NSF AgTech Engine North Dakota and Bayer), for UAV-based subplot detection, weed detection, crop counting and biomass estimation.",
       link: "",
       embed: ""
     },
     {
-      date: "2026",
+      date: "January 2026",
       text: "Paper published in Precision Agriculture: AI-augmented hyperspectral soil sensing of nitrogen and phosphorus using neural architecture search.",
       link: "",
       embed: ""
     },
     {
       date: "January 2026",
-      text: "Joined the reviewer pool of the Journal of Agriculture and Food Research (Elsevier), after reviewing for Data in Brief since September 2025.",
+      text: "Joined the reviewer pool of the Journal of Agriculture and Food Research (Elsevier).",
       link: "",
       embed: ""
     },
     {
-      date: "2025",
-      text: "Named an NDSU Possibility Fellow and Killilea Possibility Fellow, with $5,000 to develop HydroVerdant, an AI-powered smart hydroponic kitchen garden.",
+      date: "September 2025",
+      text: "Joined the reviewer pool of the Journal Data in Brief (Elsevier).",
       link: "",
       embed: ""
     },
     {
-      date: "2025",
-      text: "Elected Senator in NDSU Student Government, representing the College of Agriculture, Food Systems, and Natural Resources.",
+      date: "August 2025",
+      text: "Named an NDSU Possibility Fellow and Killilea Possibility Fellow, with an award of $5,000 to develop HydroVerdant, an AI-powered smart hydroponic kitchen garden.",
+      link: "",
+      embed: ""
+    },
+    {
+      date: "August 2025",
+      text: "Joined NDSU Student Government as Senator, representing the College of Agriculture, Food Systems, and Natural Resources.",
       link: "",
       embed: ""
     },
