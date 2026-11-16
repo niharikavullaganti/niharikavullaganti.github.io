@@ -141,7 +141,7 @@
   figure.photo { margin-top: 2rem; max-width: 30rem; }
   figure.news-photo { margin-top: .9rem; max-width: 24rem; }
 
-  /* ---------- projects and beyond the lab ---------- */
+  /* ---------- projects ---------- */
   .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr)); gap: 1.25rem; }
   .card {
     background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 1.25rem 1.25rem 1.1rem;
@@ -151,8 +151,6 @@
   .card p { margin: 0; font-size: .98rem; }
   .card .when { color: var(--fern); }
   .card .pub-links { margin-top: auto; padding-top: .25rem; }
-  .cards.hobbies { grid-template-columns: repeat(auto-fill, minmax(min(100%, 14rem), 1fr)); }
-  .hobby svg { width: 2.25rem; height: 2.25rem; color: var(--anth); }
 
   /* ---------- lists ---------- */
   .year { font: 500 .8rem/1 var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--fern); margin: 2.2rem 0 .9rem; }
@@ -267,7 +265,6 @@
       <a href="#news">News and wins</a>
       <a href="#projects">Projects</a>
       <a href="#writing">Writing</a>
-      <a href="#beyond">Beyond the lab</a>
       <a href="#cv">CV</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -438,33 +435,6 @@
     <section id="writing">
       <h2>Writing</h2>
       <div class="posts" id="post-list"></div>
-    </section>
-
-    <section id="beyond">
-      <h2>Beyond the lab</h2>
-      <p class="lede">When I am not in the field or the lab, you will find me cooking, painting, dancing, or exploring new places.</p>
-      <div class="cards hobbies">
-        <div class="card hobby">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11h18c0 4-4 7-9 7s-9-3-9-7Z"/><path d="M6 21h12"/><path d="M9 7c0-1.5 1-1.5 1-3M14 7c0-1.5 1-1.5 1-3"/></svg>
-          <h3>Cooking</h3>
-          <p>Trying new recipes and cooking the dishes I grew up with.</p>
-        </div>
-        <div class="card hobby">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.8 1.3-1.7-.3-.9.3-1.8 1.3-1.8H17a4 4 0 0 0 4-4c0-5-4-10.5-9-10.5Z"/><circle cx="7.5" cy="11" r="1"/><circle cx="10" cy="7" r="1"/><circle cx="15" cy="7.5" r="1"/></svg>
-          <h3>Painting</h3>
-          <p>Putting colour on canvas, a different way of looking closely.</p>
-        </div>
-        <div class="card hobby">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="13" cy="4" r="2"/><path d="M8 9.5 12 8l3 2.5 3.5-1"/><path d="M12 8v6l-3 7"/><path d="m12 14 3.5 2 1 5"/></svg>
-          <h3>Dancing</h3>
-          <p>Music, movement and the best way to recharge after a long week.</p>
-        </div>
-        <div class="card hobby">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5Z"/></svg>
-          <h3>Exploring and traveling</h3>
-          <p>Discovering new places, from seasonal attractions around town to trips further away.</p>
-        </div>
-      </div>
     </section>
 
     <section id="cv">
