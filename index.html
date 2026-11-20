@@ -816,7 +816,7 @@ function renderNews() {
     <li>
       <span class="when">${esc(n.date)}</span>
       <span class="what">${esc(n.text)}</span>
-      ${n.link ? ` <a href="${esc(n.link)}">Read more</a>` : ""}
+      ${n.link ? ` <a href="${esc(n.link)}" target="_blank" rel="noopener">Read more &#8599;</a>` : ""}
       ${n.photo ? `<figure class="photo news-photo"${n.detail ? ` data-detail="${esc(n.detail)}"` : ""}>
         <img src="${esc(n.photo)}" alt="${esc(n.alt || n.caption || "")}" loading="lazy">
         ${n.caption ? `<figcaption>${esc(n.caption)}</figcaption>` : ""}</figure>` : ""}
